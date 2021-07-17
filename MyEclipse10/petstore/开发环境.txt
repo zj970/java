@@ -1,0 +1,1 @@
+MyEclipse10 + MySql8.0 + tomcat 7.0
