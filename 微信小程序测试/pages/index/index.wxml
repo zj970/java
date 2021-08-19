@@ -1,0 +1,13 @@
+<!--index.wxml-->
+<view class="container">
+  <swiper class="swiper-box" indicator-dots autoplay interval="{{2000}}">
+    <block wx:for="{{tabList}}" wx:key="*this">
+      <swiper-item>
+      <image class="swiper-item" src="{{imgHttpStr+item.img}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <title-com infoStr1="直播互动学习，感受技术韵律" infoStr2="" maxTitle2="在线直播" maxTitle1="朝夕名师"></title-com>
+
+  <view class="nav-list"></view>
+</view>

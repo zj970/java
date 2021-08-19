@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/case/index",
+    "pages/about/index",
+    "pages/personal/index",
+    "pages/solution/index",
+    "components/titleCom/index"
+  ],
+  "tabBar": {
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#3cc51f",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "img/1-n.png",
+        "selectedIconPath": "img/1-y.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/about/index",
+        "iconPath": "img/2-n.png",
+        "selectedIconPath": "img/2-y.png",
+        "text": "接口"
+      },
+      {
+        "pagePath": "pages/case/index",
+        "iconPath": "/img/3-n.png",
+        "selectedIconPath": "/img/3-y.png",
+        "text": "课程中心"
+      },
+      {
+        "pagePath": "pages/solution/index",
+        "iconPath": "/img/4-n.png",
+        "selectedIconPath": "/img/4-y.png",
+        "text": "诚聘英才"
+      },
+      {
+        "pagePath": "pages/personal/index",
+        "iconPath": "/img/5-n.png",
+        "selectedIconPath": "/img/5-y.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

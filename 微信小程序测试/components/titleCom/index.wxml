@@ -1,0 +1,14 @@
+<!--components/titleCom/index.wxml-->
+<view class="container">
+  <view class="title">
+    <div class="title1">{{maxTitle1}}</div>
+    <div class="title2">{{maxTitle2}}</div>
+  </view>
+
+  <view class="info-text">
+    <view class="text1">{{infoStr1}}</view>
+    <view class="text2">{{infoStr2}}</view>
+  </view>
+
+
+</view>
