@@ -1,6 +1,8 @@
 {
-"navigationBarTitleText":"个人中心",
-"usingComponents": {
-  "title-com":"/components/titleCom/index"
-}
+  "navigationBarTitleText":"个人中心",
+  "usingComponents": {
+    "title-com":"/components/titleCom/index",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-icon": "weui-miniprogram/icon/icon"
+  }
 }

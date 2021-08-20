@@ -71,7 +71,34 @@ Page({
       url: '/pages/register/index',
     })
   },
-
+  getInfo(token){
+    //微信小程序不支持form表单格式的数据
+    wx.request({
+      url: 'https://test.zhaoxiedu.net/api/User/GetUser', 
+      method:'POST',
+        header: {
+          'content-type':'multipart/form-data; boundary=XXX'
+        },
+      data:'\r\n--XXX' +
+    '\r\nContent-Disposition: form-data; name="token"' +
+    '\r\n' +
+    '\r\n' +token+
+    '\r\n--XXX--',
+      success (res) {
+        let data=res.data;
+        data.lastLoginTime =data.lastLoginTime.split("T")[0];
+        data.createTime =data.createTime.split("T")[0];
+        try {
+          wx.setStorageSync('userInfo',JSON.stringify(data))
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
+        } catch (e) {
+          console.log
+         }
+      }
+  })  
+},
   /**
    * 生命周期函数--监听页面加载
    */

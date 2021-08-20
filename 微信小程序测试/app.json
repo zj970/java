@@ -28,24 +28,24 @@
         "pagePath": "pages/about/index",
         "iconPath": "img/2-n.png",
         "selectedIconPath": "img/2-y.png",
-        "text": "接口"
+        "text": "关于我们"
       },
       {
         "pagePath": "pages/case/index",
-        "iconPath": "/img/3-n.png",
-        "selectedIconPath": "/img/3-y.png",
+        "iconPath": "img/3-n.png",
+        "selectedIconPath": "img/3-y.png",
         "text": "课程中心"
       },
       {
         "pagePath": "pages/solution/index",
-        "iconPath": "/img/4-n.png",
-        "selectedIconPath": "/img/4-y.png",
+        "iconPath": "img/4-n.png",
+        "selectedIconPath": "img/4-y.png",
         "text": "诚聘英才"
       },
       {
         "pagePath": "pages/personal/index",
-        "iconPath": "/img/5-n.png",
-        "selectedIconPath": "/img/5-y.png",
+        "iconPath": "img/5-n.png",
+        "selectedIconPath": "img/5-y.png",
         "text": "个人中心"
       }
     ]

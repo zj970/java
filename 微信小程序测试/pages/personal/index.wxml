@@ -3,7 +3,7 @@
   <image mode="widthFix" class="banner"
     src="https://www.zhaoxiedu.net/static/imgs/banner/%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83.jpg"></image>
   
-    <view wx:if="{{token}}">
+    <view wx:if="{{!token}}">
       <view class="no-logon-title">
         <text>您尚未登录，点我</text>
         <text bindtap="goLogin" class="btn-text">登录</text>
@@ -31,7 +31,7 @@
         </view>
     </view>
    </view>
-   <view >
+   <view wx:else>
     <mp-cell ext-class="my-cells" link url="../vipCase/index" value="课程资料">
     </mp-cell>
     <mp-cell ext-class="my-cells" link url="../info/index" value="个人信息">
