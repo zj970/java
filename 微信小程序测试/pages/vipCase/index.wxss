@@ -1,0 +1,2 @@
+/* pages/vipCase/index.wxss */
+@import '../personal/index.wxss';

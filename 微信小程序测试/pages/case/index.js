@@ -5,14 +5,28 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    course:[],
+    imgHttpStr:'https://www.zhaoxiedu.net',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let _this = this
+    wx.request({
+      url: 'https://www.zhaoxiedu.net/static/json/course.json', //当前请求的接口地址
+      data: "",//data当前请求接口的参数
+      method:"GET",//当前请求的请求方式
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        _this.setData({
+          course:res.data
+        })
+      }
+    })
   },
 
   /**

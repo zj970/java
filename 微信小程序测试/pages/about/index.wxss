@@ -23,9 +23,13 @@ font-size: 12px;
 .workers-list>view{
   width: 100%;
   font-size: 13px;
+  /* 行高 */
   line-height: 24px;
+  /* 居中 */
   text-align: center;
+  /* 边框 */
   border:1px solid #efefef;
+  /* 阴影 */
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 12%), 0 0 6px 0 rgb(0 0 0 / 4%);
   margin-bottom: 15px;
 }

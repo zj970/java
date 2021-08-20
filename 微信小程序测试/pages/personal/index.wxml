@@ -1,2 +1,47 @@
 <!--pages/personal/index.wxml-->
-<text>pages/personal/index.wxml</text>
+<view class="container">
+  <image mode="widthFix" class="banner"
+    src="https://www.zhaoxiedu.net/static/imgs/banner/%E4%B8%AA%E4%BA%BA%E4%B8%AD%E5%BF%83.jpg"></image>
+  
+    <view wx:if="{{token}}">
+      <view class="no-logon-title">
+        <text>您尚未登录，点我</text>
+        <text bindtap="goLogin" class="btn-text">登录</text>
+      </view>
+    <title-com infoStr1="VIP学员可获取对应课程的视频源码" maxTitle1="VIP" maxTitle2="资源下载"></title-com>
+      <view class="list-box">
+        <view  wx:key="item.imageUrl" wx:for="{{list[0]}}" class="list">
+          <image src="{{imgHttpStr+item.imageUrl}}"></image>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+    <title-com infoStr1="VIP学员可获取的配套学习资料" maxTitle1="配套" maxTitle2="资源下载"></title-com>
+    <view class="list-box">
+        <view  wx:key="item.imageUrl" wx:for="{{list[1]}}" class="list">
+          <image src="{{imgHttpStr+item.imageUrl}}"></image>
+          <text>{{item.name}}</text>
+        </view>
+      </view>
+
+    <title-com infoStr1="独立的小额视频课资源" maxTitle1="视频课" maxTitle2="资源下载"></title-com>
+    <view class="list-box">
+        <view wx:key="item.imageUrl" wx:for="{{list[2]}}" class="list">
+          <image src="{{imgHttpStr+item.imageUrl}}"></image>
+          <text>{{item.name}}</text>
+        </view>
+    </view>
+   </view>
+   <view >
+    <mp-cell ext-class="my-cells" link url="../vipCase/index" value="课程资料">
+    </mp-cell>
+    <mp-cell ext-class="my-cells" link url="../info/index" value="个人信息">
+    </mp-cell>
+    <mp-cell ext-class="my-cells" link url="../password/index" value="修改密码">
+    </mp-cell>
+    <mp-cell ext-class="my-cells" link url="../zhaoxiInfo/index" value="联系我们">
+    </mp-cell>
+    <view class="btn-box">
+    <button bindtap="outLogin" style="width:100%" type="primary">退出登录</button>
+  </view>
+   </view>
+</view>

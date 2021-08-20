@@ -1,0 +1,12 @@
+/* pages/info/index.wxss */
+.my-cells{
+  padding:10px 16px;
+  border-bottom:1px solid #efefef;
+}
+.sub-btn{
+  color:#07c160
+}
+.value{
+  color:#333;
+  margin-left:10px
+}

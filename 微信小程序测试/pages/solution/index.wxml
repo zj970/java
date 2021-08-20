@@ -1,2 +1,15 @@
 <!--pages/solution/index.wxml-->
-<text>pages/solution/index.wxml</text>
+<view class="container">
+  <image mode="widthFix" class="banner"
+    src="https://www.zhaoxiedu.net/static/imgs/banner/%E8%AF%9A%E8%81%98%E8%8B%B1%E6%89%8D.jpg"></image>
+    <title-com infoStr1="广阔的舞台和热情的观众" infoStr2="在等待着你来挥洒才华" maxTitle1="诚聘"  maxTitle2="英才"></title-com>
+
+    <view>
+      <view wx:for="{{recruitSmallList}}" wx:key="item.id" class="list">
+         <image src="{{imgHttpStr+item.img}}"></image>
+         <view class="title">{{item.title}}</view>
+         <view>{{item.text}}</view>
+      </view>
+    </view>
+</view>
+

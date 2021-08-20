@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText":"登录",
+  "usingComponents": {
+    "title-com":"/components/titleCom/index",
+    "mp-form": "weui-miniprogram/form/form",
+    "mp-cell": "weui-miniprogram/cell/cell"
+  }
+}

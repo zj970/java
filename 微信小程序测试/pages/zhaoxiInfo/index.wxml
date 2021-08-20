@@ -1,0 +1,29 @@
+<!--pages/zhaoxiInfo/index.wxml-->
+<view class="container">
+    <view class="list">
+      <text>联系电话：</text>{{companyInfo.contactNumber}}
+    </view>
+    <view class="list">
+      <text>企业微信：</text>{{companyInfo.wx}}
+    </view>
+    <view class="list">
+      <text>咨询QQ：</text>{{companyInfo.QQ}}
+    </view>
+    <view class="list">
+      <text>咨询微信：</text>{{companyInfo.wx}}
+    </view>
+    <view class="list">
+      <text>电子邮箱：</text>{{companyInfo.email}}
+    </view>
+    <view class="list">
+      <text>网站备案：</text>{{companyInfo.recordNum}}
+    </view>
+    <view class="list">
+      <image mode="widthFix" src="{{imgHttpStr+companyInfo.erCode}}"></image>
+    </view>
+
+    <view class="bottom-box">
+      <view>版权所有 © 2019-2029 朝夕教育科技有限公司</view>
+      <view>copyright © zhaoxi.com All Rights Reserved</view>
+    </view>
+</view>

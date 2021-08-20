@@ -1,1 +1,35 @@
 /* pages/case/index.wxss */
+.list{
+  padding:0 10px;
+  margin-bottom: 10px;
+}
+.list .title{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.list .title button{
+  width: 85px;
+  margin: 0;
+  height: 30px;
+  line-height: 17px;
+}
+.list .title text{
+  flex:1;
+  font-size: 14px;
+  font-weight: 600;
+}
+.list image{
+  width: 120px;
+  height: 120px;
+  margin-right: 10px;
+  border-radius: 50px;
+}
+.list .info{
+  display: flex;
+  font-size: 13px;
+  line-height: 20px;
+}
+.list view{
+  flex:1
+}

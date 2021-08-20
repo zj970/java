@@ -1,11 +1,16 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/case/index",
     "pages/about/index",
+    "pages/case/index",
     "pages/personal/index",
     "pages/solution/index",
-    "components/titleCom/index"
+    "pages/login/index",
+    "pages/register/index",
+    "pages/vipCase/index",
+    "pages/info/index",
+    "pages/password/index",
+    "pages/zhaoxiInfo/index"
   ],
   "tabBar": {
     "custom": true,

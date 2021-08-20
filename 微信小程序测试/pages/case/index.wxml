@@ -1,2 +1,22 @@
 <!--pages/case/index.wxml-->
-<text>pages/case/index.wxml</text>
+<view class="container">
+  <image mode="widthFix" class="banner"
+    src="https://www.zhaoxiedu.net/static/imgs/banner/%E8%AF%BE%E7%A8%8B%E4%B8%AD%E5%BF%83.jpg"></image>
+    <title-com infoStr1="持续更新，咨询有礼" maxTitle1="课程列表"></title-com>
+
+      <view class="list-box">
+        <view class="list" wx:for="{{course}}" wx:key="{{item.courseName}}">
+          <view class="title">
+            <text>{{item.courseName}}</text>
+            <button type="primary" open-type="contact">咨询</button>
+          </view>
+          <view class="info">
+            <image src="{{imgHttpStr+item.img}}"></image>
+            <view>{{item.describe}}</view>
+          </view>
+
+        </view>
+
+      </view>
+
+</view>

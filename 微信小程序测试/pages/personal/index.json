@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+"navigationBarTitleText":"个人中心",
+"usingComponents": {
+  "title-com":"/components/titleCom/index"
+}
 }

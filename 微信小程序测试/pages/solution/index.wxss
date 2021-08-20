@@ -1,1 +1,17 @@
 /* pages/solution/index.wxss */
+.list{
+  text-align: center;
+  margin-bottom: 10px;
+}
+.list image{
+  width: 100%;
+}
+.list view{
+  font-size: 13px;
+  line-height: 24px;
+  padding:0 10px;
+}
+.list view.title{
+  font-weight: 600;
+  font-size: 14px;
+}

@@ -1,0 +1,39 @@
+<!--pages/login/index.wxml-->
+<view class="container">
+  <title-com infoStr1="VIP学员可获取对应课程的视频源码" maxTitle1="注册" maxTitle2="朝夕"></title-com>
+
+  <mp-form id="form" models="{{formData}}">
+    <mp-cell prop="mobile" title="昵称" ext-class="weui-cell_inp">
+      <input bindinput="formInputChange" data-field="NickName" class="weui-input" placeholder="请输入昵称" />
+    </mp-cell>
+    <mp-cell prop="mobile" title="QQ" ext-class="weui-cell_inp">
+      <input bindinput="formInputChange" data-field="QQ" class="weui-input" placeholder="请输入QQ" />
+    </mp-cell>
+    <mp-cell prop="mobile" title="手机号" ext-class="weui-cell_inp">
+      <input bindinput="formInputChange" data-field="PhoneNum" class="weui-input" placeholder="请输入手机号" />
+    </mp-cell>
+    <mp-cell prop="mobile" title="性别" ext-class="weui-cell_inp">
+      <picker bindchange="bindPickerChange" value="{{formData.Sex}}" range="{{array}}">
+        <view class="picker">
+           {{array[formData.Sex]}}
+        </view>
+  </picker>
+    </mp-cell>
+    <mp-cell prop="date" title="密码" ext-class="weui-cell_inp">
+      <input password bindinput="formInputChange" data-field="Pwd" class="weui-input" placeholder="请输入密码" />
+    </mp-cell>
+    <mp-cell prop="date" title="密码" ext-class="weui-cell_inp">
+      <input password bindinput="formInputChange" data-field="Pwd2" class="weui-input" placeholder="请再次输入密码" />
+    </mp-cell>
+    <mp-cell prop="vcode" title="验证码" ext-class="weui-cell_inp">
+      <input bindinput="formInputChange" data-field="ValidateString" class="weui-input" placeholder="请输入验证码" />
+      <image bindtap="setImgFun" slot="footer" class="weui-vcode-img" src="{{'https://test.zhaoxiedu.net/api/login/CreateValidateCode/?t='+imgValidateCode}}" style="width: 108px"></image>
+    </mp-cell>
+  </mp-form>
+  <view class="btn-box">
+    <button bindtap="loginFun" type="primary">注册</button>
+  </view>
+  <view class="res-box">
+    <text bindtap="goLogin">已有账号，我要登录</text>
+  </view>
+</view>
