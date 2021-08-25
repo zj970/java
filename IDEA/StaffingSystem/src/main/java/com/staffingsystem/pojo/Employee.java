@@ -13,7 +13,6 @@ public class Employee {
     private String lastName;
     private String email;
     private Integer gendeer;//0:女 1：男
-
     private Department department;
     private Date birth;
 

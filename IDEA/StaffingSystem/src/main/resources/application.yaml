@@ -9,3 +9,7 @@ spring:
     cache: false
   messages:
     basename: i18n.login
+  #修改i日期格式
+  mvc:
+    format:
+      date: yyyy-MM-dd

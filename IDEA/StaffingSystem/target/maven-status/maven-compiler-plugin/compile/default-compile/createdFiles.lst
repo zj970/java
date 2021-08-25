@@ -2,6 +2,7 @@ com\staffingsystem\pojo\Employee.class
 com\staffingsystem\config\MyLocaleReolver.class
 com\staffingsystem\dao\DepartmentDao.class
 com\staffingsystem\dao\EmployeeDao.class
+com\staffingsystem\controller\EmployeeController.class
 com\staffingsystem\StaffingSystemApplication.class
 com\staffingsystem\config\LoginHandlerInterceptor.class
 com\staffingsystem\pojo\Department.class
