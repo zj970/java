@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    username: root
+    password: admin
+    #假如时区报错了，就增加一个时区的配置serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/pet?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
