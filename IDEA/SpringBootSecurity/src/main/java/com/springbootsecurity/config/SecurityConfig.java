@@ -38,12 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
         //没有权限默认到登录页面
-        http.formLogin().loginPage("/usr/login");
+        http.formLogin().usernameParameter("username").passwordParameter("pwd").loginPage("/usr/login");//loginPage()指定登录界面是哪一个，一定都要是POST请求
         //防止网站攻击：get,post
         http.csrf().disable();//关闭csrf功能，防止跨站请求伪造关闭，慎用！登录注销失败使用
         //注销功能开启，跳到首页
         http.logout().logoutSuccessUrl("/");
-
+        //开启记住我功能 cookie,默认保存两周，自定义接收前端的参数
+        http.rememberMe().rememberMeParameter("remember");
 
     }
 }
