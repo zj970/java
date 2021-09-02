@@ -56,6 +56,7 @@ public class UserRealm extends AuthorizingRealm {
             return null;//抛出异常UnknownAccountException
         }
 
+
         //密码认证，shiro做~
         //可以加密 MD5 MD5颜值加密
         return new SimpleAuthenticationInfo(user,user.getPassword(),"");
