@@ -22,10 +22,10 @@ class AsyncronousTasksApplicationTests {
     void contextLoads() {
         //一个简单的邮件
         SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setSubject("宝贝你好啊~");
-        mailMessage.setText("我喜欢你");
+        mailMessage.setSubject("你好啊~");
+        mailMessage.setText("123456");
         mailMessage.setFrom("3060529292@qq.com");//发件人
-        mailMessage.setTo("2897612087@qq.com","3554572522@qq.com");//收件人
+        mailMessage.setTo("zjbin123@163.com","3554572522@qq.com");//收件人
         //mailMessage.setTo("3554572522@qq.com");
         mailSender.send(mailMessage);
 
