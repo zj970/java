@@ -69,7 +69,7 @@ public class Demo03 {
 
         if (flag==true){}//新手
         if (flag){}//老鸟
-        //Less if More！代码要精简易读
+        //Less is More！代码要精简易读
 
     }
 }
