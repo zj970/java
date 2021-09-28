@@ -38,7 +38,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--thymeleaf模板-->
+       <!--thymeleaf模板-->
         <dependency>
             <groupId>org.thymeleaf</groupId>
             <artifactId>thymeleaf-spring5</artifactId>

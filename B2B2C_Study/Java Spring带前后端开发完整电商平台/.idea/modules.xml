@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Groupon.iml" filepath="$PROJECT_DIR$/Groupon.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Admin/groupon-admin.iml" filepath="$PROJECT_DIR$/Admin/groupon-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Admin/Controller/groupon-admin-controller.iml" filepath="$PROJECT_DIR$/Admin/Controller/groupon-admin-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Admin/Web/groupon-admin-web.iml" filepath="$PROJECT_DIR$/Admin/Web/groupon-admin-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ImageServer/groupon-image-server.iml" filepath="$PROJECT_DIR$/ImageServer/groupon-image-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Service/groupon-service.iml" filepath="$PROJECT_DIR$/Service/groupon-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Site/groupon-site.iml" filepath="$PROJECT_DIR$/Site/groupon-site.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Site/Controller/groupon-site-controller.iml" filepath="$PROJECT_DIR$/Site/Controller/groupon-site-controller.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Site/Web/groupon-site-web.iml" filepath="$PROJECT_DIR$/Site/Web/groupon-site-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Alipay/road-alipay.iml" filepath="$PROJECT_DIR$/Alipay/road-alipay.iml" />
+    </modules>
+  </component>
+</project>

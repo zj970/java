@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yuu.ymall.web.admin.mapper.TbOrderMapper">
+  <resultMap id="BaseResultMap" type="com.yuu.ymall.domain.TbOrder">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="payment" jdbcType="DECIMAL" property="payment" />
+    <result column="payment_type" jdbcType="INTEGER" property="paymentType" />
+    <result column="post_fee" jdbcType="DECIMAL" property="postFee" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="created" jdbcType="TIMESTAMP" property="created" />
+    <result column="updated" jdbcType="TIMESTAMP" property="updated" />
+    <result column="payment_time" jdbcType="TIMESTAMP" property="paymentTime" />
+    <result column="consign_time" jdbcType="TIMESTAMP" property="consignTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="close_time" jdbcType="TIMESTAMP" property="closeTime" />
+    <result column="shipping_name" jdbcType="VARCHAR" property="shippingName" />
+    <result column="shipping_code" jdbcType="VARCHAR" property="shippingCode" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="buyer_message" jdbcType="VARCHAR" property="buyerMessage" />
+    <result column="buyer_nick" jdbcType="VARCHAR" property="buyerNick" />
+    <result column="buyer_comment" jdbcType="BIT" property="buyerComment" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from tb_order
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.yuu.ymall.domain.TbOrder">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.String">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into tb_order (payment, payment_type, post_fee,
+      status, created, updated,
+      payment_time, consign_time, end_time,
+      close_time, shipping_name, shipping_code,
+      user_id, buyer_message, buyer_nick,
+      buyer_comment)
+    values (#{payment,jdbcType=DECIMAL}, #{paymentType,jdbcType=INTEGER}, #{postFee,jdbcType=DECIMAL},
+      #{status,jdbcType=INTEGER}, #{created,jdbcType=TIMESTAMP}, #{updated,jdbcType=TIMESTAMP},
+      #{paymentTime,jdbcType=TIMESTAMP}, #{consignTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP},
+      #{closeTime,jdbcType=TIMESTAMP}, #{shippingName,jdbcType=VARCHAR}, #{shippingCode,jdbcType=VARCHAR},
+      #{userId,jdbcType=BIGINT}, #{buyerMessage,jdbcType=VARCHAR}, #{buyerNick,jdbcType=VARCHAR},
+      #{buyerComment,jdbcType=BIT})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.yuu.ymall.domain.TbOrder">
+    update tb_order
+    set payment = #{payment,jdbcType=DECIMAL},
+      payment_type = #{paymentType,jdbcType=INTEGER},
+      post_fee = #{postFee,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      created = #{created,jdbcType=TIMESTAMP},
+      updated = #{updated,jdbcType=TIMESTAMP},
+      payment_time = #{paymentTime,jdbcType=TIMESTAMP},
+      consign_time = #{consignTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      close_time = #{closeTime,jdbcType=TIMESTAMP},
+      shipping_name = #{shippingName,jdbcType=VARCHAR},
+      shipping_code = #{shippingCode,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      buyer_message = #{buyerMessage,jdbcType=VARCHAR},
+      buyer_nick = #{buyerNick,jdbcType=VARCHAR},
+      buyer_comment = #{buyerComment,jdbcType=BIT}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, payment, payment_type, post_fee, status, created, updated, payment_time,
+    consign_time, end_time, close_time, shipping_name, shipping_code, user_id, buyer_message,
+    buyer_nick, buyer_comment
+    from tb_order
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, payment, payment_type, post_fee, status, created, updated, payment_time,
+    consign_time, end_time, close_time, shipping_name, shipping_code, user_id, buyer_message,
+    buyer_nick, buyer_comment
+    from tb_order
+  </select>
+
+    <sql id="tbOrderBaseColumns">
+        a.id,
+        a.payment,
+        a.payment_type,
+        a.post_fee,
+        a.status,
+        a.created,
+        a.updated,
+        a.payment_time,
+        a.consign_time,
+        a.end_time,
+        a.close_time,
+        a.shipping_name,
+        a.shipping_code,
+        a.user_id,
+        a.buyer_message,
+        a.buyer_nick,
+        a.buyer_comment
+    </sql>
+
+    <!-- 获取订单总数 -->
+    <select id="getAllOrderCount" resultType="int">
+        select count(*) from tb_order;
+    </select>
+
+
+    <!-- 获取订单列表 -->
+    <select id="getOrderList" resultType="tbOrder" parameterType="map">
+        select <include refid="tbOrderBaseColumns"/>
+        from tb_order as a
+        <where>
+            <if test="search != null and search != ''">
+                AND (id like concat('%', #{search}, '%'))
+                OR (buyer_nick like concat('%', #{search}, '%'))
+            </if>
+            <if test="status != -1">
+                AND status = #{status}
+            </if>
+        </where>
+        order by created desc
+    </select>
+
+    <!-- 获取订单列表数量 -->
+    <select id="getTbOrderCount" resultType="int">
+        select count(*)
+        from tb_order
+        <where>
+            <if test="search != null and search != ''">
+                AND (id like concat('%', #{search}, '%'))
+                OR (buyer_nick like concat('%', #{search}, '%'))
+            </if>
+            <if test="status != -1">
+                AND status = #{status}
+            </if>
+        </where>
+    </select>
+
+    <!-- 查询图表数据 -->
+    <select id="selectOrderChart" resultType="com.yuu.ymall.web.admin.commons.dto.OrderChartData">
+      select
+      sum(payment) money, DATE(created) time
+      from tb_order
+      where
+      created BETWEEN #{startTime} and #{endTime}
+      and status = 4
+      GROUP BY DAY(created)
+    </select>
+
+    <!-- 按年份查询图表数据 -->
+    <select id="selectOrderChartByYear" resultType="com.yuu.ymall.web.admin.commons.dto.OrderChartData">
+      select
+      sum(payment) money, DATE(created) time
+      from tb_order
+      where
+      year(created) = #{year}
+      and status = 4
+      group by month(created)
+    </select>
+
+</mapper>
