@@ -39,11 +39,11 @@ spring:
     #useGlobalDataSourceStat: true
   # redis
   redis:
-    host: 172.16.0.16
+    host: 192.168.50.62
     port: 6379
   data:
     elasticsearch:
       cluster-name: docker-cluster
-      cluster-nodes: 172.16.0.8:9300
+      cluster-nodes: 192.168.50.62:9300
       repositories:
         enable: true

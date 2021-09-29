@@ -605,3 +605,7 @@ final double PI = 3.14;
   - 位运算：&，|，^，~，>>，<<，>>>
   - 条件运算符 ? :
   - 扩展赋值运算符：+=，-=，*=，/=
+
+- **优先级 **
+
+![表-运算符的优先级](C:\Users\zj\AppData\Roaming\Typora\typora-user-images\image-20210929175254374.png)

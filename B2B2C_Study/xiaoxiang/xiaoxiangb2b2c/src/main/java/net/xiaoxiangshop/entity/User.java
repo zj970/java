@@ -373,6 +373,6 @@ public abstract class User extends BaseEntity<User> {
 	 * @return 凭证是否正确
 	 */
 	@Transient
-	public abstract boolean isValidCredentials(Object credentials);
+	public abstract boolean  isValidCredentials(Object credentials);
 
 }

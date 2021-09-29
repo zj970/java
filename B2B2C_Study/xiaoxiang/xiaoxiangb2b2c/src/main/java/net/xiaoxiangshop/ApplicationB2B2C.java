@@ -15,7 +15,6 @@ import org.wf.jwtp.configuration.EnableJwtPermission;
 @SpringBootApplication
 @MapperScan(basePackages = "net.xiaoxiangshop.dao")
 @ComponentScan(basePackages = { "net.xiaoxiangshop.util", "net.xiaoxiangshop" })
-
 public class ApplicationB2B2C extends SpringBootServletInitializer {
 
 	@Override
