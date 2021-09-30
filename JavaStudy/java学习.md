@@ -1,4 +1,4 @@
-# 学习准备：博客
+#  学习准备：博客
 
 - 博客，英文名为Blog,它的正式名称为网络日记
 - 为什么要写博客？
@@ -435,8 +435,8 @@ ipconfig
 
 - 非法标识符举例:123Bc、-salary、#adc
 
-  ```java
-  public static void main(){
+  ```
+  public static void main(String[] args){
   	string 王者荣耀 = "最强王者“;
     System.out.println(王者荣耀);
   }
@@ -525,7 +525,7 @@ ipconfig
 
 - **Java变量是程序中最基本的存储单元，其要素包括变量名，变量类型和作用域。**
 
-  ```java
+  ```
   type varName [=value]	[{,varName[=value]}];
   //数据类型	变量名 = 值;可以使用逗号隔开来声明多个同类型变量。
   ```
@@ -546,7 +546,7 @@ ipconfig
 - **实例变量**
 - **局部变量**
 
-```java
+```
 public class Veriable{
   static int allClicks;//类变量，搭配static
   String str = "Hello world";//实例变量
@@ -568,7 +568,7 @@ public class Veriable{
 - **常量(Constant)：初始化(initialize)后不能再改变值！不会改变的值。**
 - **所谓常量可以理解成一种特殊的变量，它的值被设定后，在程序运行过程中不运行被改变。**
 
-```java
+```
 final <VariateName> = value;//C语言中用	const
 final double PI = 3.14;
 ```
@@ -609,3 +609,96 @@ final double PI = 3.14;
 - **优先级 **
 
 ![表-运算符的优先级](C:\Users\zj\AppData\Roaming\Typora\typora-user-images\image-20210929175254374.png)
+
+---
+
+## 包机制
+
+- **为了更好地组织类，Java提供了包机制，用于区别类名的命名空间**
+
+- **包语句的语法格式为:**
+
+  ```
+  package pkg1[.pkg2[.pkg3...]]
+  ```
+
+- <font color= red>**一般利用公司域名倒置作为包名**</font>
+
+- **为了能够使用某一个包的成员，我们需要在 Java 程序中明确导入该包。使用"import"语句**
+
+  ```
+  import package1[.package2[.package3..]].(classname|*);
+  ```
+
+- **包机制本质就是文件夹**
+
+
+
+---
+
+## Java DOC
+
+- **java doc 命令是用来生成自己的API文档的**
+
+- **参数信息**
+
+  - @**author 作者名**
+  - @**version 版本号**
+  - @**since 指明需要最早使用的jdk版本**
+  - @**param 参数名**
+  - @**throws 异常抛出情况**
+
+- 命令生成文档
+
+  ```
+  javadoc -encoding UTF-8 -charset UTF-8 xxx.java
+  ```
+
+- IDEA生成文档
+
+  - Tools > Generate JavaDoc Scope
+  - 选择项目还是某个文件
+  - Output directory : **输出doc文档路径**
+  - Locale : **zh_CN**
+  - Other command line arguments : **-encoding UTF-8 -charset UTF-8 -windowtitle “文档HTML页面标签的标题” -link http://docs.Oracle.com/javase/8/docs/api**
+
+---
+
+
+
+
+
+# Java 流程控制
+
+
+
+
+
+## 用户交互Scanner
+
+####  Scanner对象
+
+- **之前我们学的基本语法中我们并没有实现程序和人的交互，但是Java 给我们提供了这样一个工具类，我们可以获得用户的输入。<font color=red> java.util.Scanner </font>是java 5的新特征，我们可以<font color=red>通过Scanner 类来获取用户的输入</font>**
+
+- **基本语法：**
+
+  ```
+  Scanner s  = new Scanner(System.in);
+  //凡是属于IO流的类如果不关闭会一直占用资源，要养成好习惯用完就关掉
+  s.close();
+  ```
+
+- **通过 Scanner 类的 next() 与 nextLine() 方法获取输入的字符串，在读取前我们一般需要使用 hasNext() 与 hasNextLine() 判断是否还有输入的数据。**
+
+- **next():**
+
+  - **一定要读取到有效字符后才可以结束输入**
+  - **对输入有效字符之前遇到的空白，next()方法会自动将其去掉。**
+  - **只有输入有效字符后才将其后面输入的空白作为分隔符或者结束符。**
+  - <font color=red>**next() 不能得到带有空格的字符串**</font>
+  
+- **nextLine():**
+
+  - **以Enter为结束符，也就是说 nextLIne()方法返回的是输入回车之前的所有字符。**
+  - **可以得到空白**
+
