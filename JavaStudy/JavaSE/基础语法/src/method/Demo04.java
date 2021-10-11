@@ -2,7 +2,8 @@ package method;
 
 public class Demo04 {
     public static void main(String[] args) {
-
+        Demo04 demo04 = new Demo04();
+        demo04.method(1,2,3,4);
     }
 
     public void method(){}
