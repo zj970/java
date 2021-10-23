@@ -11,9 +11,9 @@ public class Doc {
 
 
     /**
-     * @author zj970
-     * @param name
-     * @return  String
+     * @author zj970 作者
+     * @param name 参数
+     * @return  String 返回值
      * @throws Exception
      */
     public String test(String name) throws Exception{
