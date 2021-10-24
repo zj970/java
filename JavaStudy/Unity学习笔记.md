@@ -4,8 +4,8 @@
 
 （Unity2018.4.3f1）
 
-![Camera](C:\Users\zj\Pictures\UnityStudy\Unity2018Camera.png.jpg)
-
+![Cmaera
+](E:/StudyNotes/Picture/UnityStudy/Camera.png)
 
 
 ---
@@ -92,4 +92,271 @@
 2. [Unity3D摄像机Camera参数详解](https://blog.csdn.net/weixin_42513339/article/details/83010862)
 
    
+   
+---
+# Unity 生命周期函数
+
+![生命周期函数图](https://images2017.cnblogs.com/blog/1284555/201711/1284555-20171129220355167-1445128134.jpg)
+
+<font color=red>Unity 3D 中的生命周期函数</font>
+
+**生命周函数**：需要继承 MonoBehaviour 类才能使用。生命周期函数全部都是由系统定义好的，系统会自动调用，且调用顺序与在代码中的书写顺序无关
+
+
+## 常用的生命周期函数
+
+**<font color=red>Awake()</font>**: 唤醒事件，游戏一开始运行就执行，只执行一次。
+
+**<font color=red>OnEnable()</font>**: 启用事件，只执行一次，当脚本组件被启用的时候执行一次。
+
+**<font color=red>Start()</font>**: 开始事件，执行一次。
+
+**<font color=red>FiexdUpdate()</font>**: 固定更新事件，执行N次，每物理帧(0.02s)执行一次。所有物理相关的更新都在这个事件中处理。
+
+**<font color=red>Update()</font>**： 更新事件，执行N次，每帧执行一次。
+
+**<font color=red>LateUpdate()</font>**: 稍后更新事件，执行N次，在Update()事件执行完毕后在再执行。
+
+**<font color=red>OnGUI()</font>**: GUI渲染事件，执行N次，执行的次数是Update()事件的两倍。
+
+**<font color=red>OnDisable()</font>**: 禁用事件，执行一次。在OnDestory()事件前执行。或者当该脚本组件被"禁用"后，也会出发该事件。
+
+
+**<font color=red>OnDestory()</font>**: 销毁事件，执行一次。当脚本所挂载的游戏物体被销毁时执行。
+
+
+## 一、Editor
+
+### Reset
+    void Reset()  
+    {
+        
+    }
+    
+
+调用Reset是在用户点击检视面板的Reset按钮或者首次添加该组件时被调用。此函数只在编辑模式下被调用，Reset最常用于在检视面板中给定一个最常用的默认值。
+
+    public GameObject target;
+    void Reset(){
+        target = GameObject.FindWithTag("Player");
+    }
+
+### OnValidate
+
+**OnValidate**: 每当设置脚本的属性时都会调用OnValidate,包括反序列化对象时，这可能发生在不同的时间，例如在编辑器中打开场景时和域重新加载后。
+
+
+## 二、Initialization
+
+### void Awake()
+
+    void Awake(){
+        
+    }
+    
+ 当一个脚本实例被载入时Awake被调用。Awake用于在游戏开始之前初始化变量或游戏状态。在脚本整个生命周期内它仅被调用一次Awake在所有对象被初始化之后调用，所以可以安全的与其他对象或用GameObject.FindWithTag这类的函数搜索它们。<font color=green>每个游戏物体上的 Awake 以随机的顺序被调用。Awake 像构造函数一样只被调用一次。 Awake 总是在 Start 之前被调用。</font>
+ 
+ ### void OnEnable()
+ 
+    void OnEnable(){
+        
+    }
+
+当对象变为可用或激活状态时此函数被调用，OnEnable 不能用于协同程序。
+
+
+    using UnityEngine;
+    using System.Collections;
+    public class OnEnabledTest : MonoBehaviour{
+        void OnEnable(){
+            print("This script was enable");
+        }
+    }
+    
+### void Start()
+
+
+    void Start(){
+        
+    }
+    
+
+Start 仅在Update 函数第一次被调用前调用，在 behaviour 的生命周期中只被调用一次，它和 Awake的不同是 Start只在脚本实例被启用时调用。可以按需调整延迟初始化代码。<font color=green> Awake 总是在Start 之前执行，允许你协调初始化顺序，在游戏运行过程中实例化对象时，不能强制执行此调用，初始化目标变量，目标是私有的并且不能在检视面板中编辑。</font>
+
+    using UnityEngine;
+    using System.Collections;
+    public class StartTest : MonoBehaviour
+    {
+        private GameObject target;
+        
+        void Start(){
+            target = GameObject.FindWithTag("Player");
+        }
+        
+    }
+
+## 三、Physics
+
+### void FixedUpdate()
+
+    void FixedUpdate()
+    {
+        
+    }  
+
+固定更新 void FixedUpdate() 处理基于物理游戏行为一般用该方法，处理 Rigidbody时， 需要用到 fixedUpdate 代替 Update 。当 MonoBehaviour 启用时，其FixedUpdate 在每一帧被调用。在FixedUpdate 内应用运动计算时，无需将值乘以 Time.deltaTime，因为FixedUpdate 的调用基于可靠的计时器(独立于帧率)。
+
+例如：给刚体加一个作用力时，必须应用作用力在 FixedUpdate 里的固定帧，而不是Update中的帧。（两者帧长不同）每帧应用一个向上的力到刚体上
+
+    using UnityEngine;
+    using System.Collections;
+    public class Example : MonoBehaviour
+    {
+        void FixedUpdate()
+        {
+            rigidbody.AddForce(Vector3.up);
+        }
+    }
+
+### void OnTriggerXXX(Collider other)
+
+    void OnTriggerXXX(Collider other)
+    {
+        
+    }
+    
+ 
+进入触发器 void OnTriggerEnter(Collider other) 当 Collider(碰撞体) 进入 trigger(触发器)时调用 OnTriggerEnter。
+
+逗留触发器 void OnTriggerStay(Collider other) 当碰撞体接触触发器时，OnTriggerStay 将在每一帧被调用。
+
+退出触发器 void OntriggerExit(Collider other) 当Collider(碰撞体)停止触发trigger(触发器)时调用OnTriggerExit。
+
+### void OnCollisionXXX (Collision collisionInfo)
+
+
+    void OnCollisionXXX (Collision collisionInfo){
+        
+    }
+    
+
+进入碰撞 void OnCollisionEnter (Collision collisionInfo),当此collider/rigidbody触发另一个rigidbody/collider时，OnCollisionEnter将会在开始碰撞时调用。
+
+
+逗留碰撞 void OnCollisionStay (Collision collisionInfo),当此collider/rigidbody触发另一个rigidbody/collider时，OnCollisionStay将会在每一帧被调用。
+
+
+退出碰撞 void OnCollisionExit (Collision collisionInfo),当此collider/rigidbody停止触发另一个rigidbody/collider时，OnCollisionExit将被调用。
+
+
+Collision包含接触点,碰撞速度等细节。如果在函数中不使用碰撞信息，省略collisionInfo参数以避免不必要的运算.
+
+### yieldWaitForFixUpdate
+
+
+
+## 四、Input events
+
+### void OnMouseXXX()
+
+    void OnMouseXXX(){
+        
+    }
+    
+
+<font color=red>void OnMouseUp()</font>: 当用户释放鼠标按钮时调用OnMouseUp。OnMouseUp只调用在按下的同一物体上。此函数在iPhone上无效。
+
+<font color=red>void OnMouseDown()</font>: 当鼠标在Collider(碰撞体)上点击时调OnMouseDown。
+
+<font color=red>void OnMouseEnter()</font>: 当鼠标进入到Collider(碰撞体)中时调用OnMouseEnter。
+
+<font color=red>void OnMouseExit()</font>: 当鼠标移出Collider(碰撞体)上时调用OnMouseExit。
+
+<font color=red>void OnMouseOver()</font>: 当鼠标悬浮在Collider(碰撞体)上时调用 OnMouseOver 。
+
+实例代码：
+
+    using UnityEngine;
+    using System.Collections;
+    public class OnMouseXXX : MonoBehaviour {
+        void OnMouseEnter()
+        {
+            Debug.Log(“当鼠标进入”);
+        }
+            void OnMouseDown()
+        {
+            Debug.Log(“当鼠标按下”);
+        }
+        void OnMouseDrag()
+        {
+            Debug.Log(“当鼠标拖动”);
+        }   
+        void OnMouseExit()
+        {
+            Debug.Log(“当鼠标推出”);
+        }
+        void OnMouseOver()
+        {
+            Debug.Log(“当鼠标经过”);
+        }
+    }
+
+## 五、Game Logic
+
+### void Update()
+
+    void Update()
+    {
+        
+    }
+
+当MonoBehaviour启用时，其Update在每一帧被调用，UPdate是实现各种游戏行为最常用的函数。
+
+    using UnityEngine;
+    using System.Collections;
+    public class UpdateTest : MonoBehaviour
+    {
+        void Update()
+        {
+            transform.Translate(0,0,Time.deltaTime * 2f);
+        }
+    }
+    
+
+### void LateUpdate()
+
+    void LateUpdate()
+    {
+        
+    }
+    
+当Behaviour启用时，其LateUpdate在每一帧被调用，LateUpdate是在所有Update函数调用后被调用。这可用于调整脚本执行顺序。
+
+例如：当物体在Update里移动时，跟随物体的相机可以在LateUpdate里实现。
+
+
+### yield null
+
+### yield WaitForSeconds
+
+### yield WWW
+
+### yield StartCoroutine
+
+
+## 六、Scene rendering
+
+### OnWillRenderObject
+
+<font color=red>OnWillRenderObject</font>:如果对象可见，则为每个相机调用一次此函数。
+
+---
+参考文档：
+
+1. [Unity 官方开发手册](https://docs.unity.cn/cn/2018.4/Manual/class-Camera.html)
+
+2. [博客园](https://www.cnblogs.com/xiaoyulong/p/7922985.html#)
+
+3. [Unity全部生命周期函数总结](https://blog.csdn.net/weixin_44048531/article/details/109753440)
+
 
