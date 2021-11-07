@@ -350,6 +350,82 @@ Collision包含接触点,碰撞速度等细节。如果在函数中不使用碰�
 
 <font color=red>OnWillRenderObject</font>:如果对象可见，则为每个相机调用一次此函数。
 
+### OnPreCull
+<font color=red>OnPreCull</font>:在相机剔除场景之前调用此函数。相机可见的对象取决于剔除。OnPreCull 函数调用发生在剔除之前。
+
+### OnBecameVisible
+<font color=red>OnBecameVisible/OnBecameInvisible</font>:在对象对于相机可见/不可见时调用此函数。
+
+### OnPreRender
+<font color=red>OnPreRender</font>:在相机开始渲染场景之前调用此函数。
+
+### OnRenderObject
+<font color=red>OnRenderObject</font>:在完成所有常规场景渲染后调用此函数。此时，可使用GL类或Graphics.DrawMeshNow绘制自定义几何图形。
+
+### OnPostRender
+<font color=red>OnPostRender</font>:在相机完成场景渲染后调用此函数。
+
+### OnRenderImage
+<font color=red>OnRenderImage</font>:在完成场景渲染后调用此函数，以便对屏幕图像进行后期处理。
+
+
+## 七、Gizemo rendering
+
+### void OnDrawGizmos()
+    
+    void OnDrawGizmos(){
+        
+    }
+    
+OnDrawGizmos只在编辑模式下被调用
+
+OnDrawGizmos 用于在场景视图中绘制小图示(Gizmos),以实现可视化目的。
+
+## 八、GUI rendering
+
+### void OnGUI()
+
+    void OnGUI(){
+       if( GUI.BUtton(new Rect(10,10,150,100),"I am a Button")){  
+           print("You clicked the button!")
+       }
+    }
+
+OnGUI在每一帧更新时调用多次，以响应GUI事件。程序首先将处理Layout和RePaint事件，然后再处理每个输入事件的Layout和keyboard/鼠标事件。
+
+## 九、End of frame
+
+### yieldWaitForEndOfFrame()
+
+## 十、Pausing 
+
+### void OnApplicationPause()
+
+    void OnApplicationPause(){
+        
+    }
+
+OnApplicationPause()在程序检测到暂停时，会在帧的结尾被调用
+
+## 十一、Disable/enable
+
+### void OnDisaable()
+
+    void OnDisable()
+    {
+        
+    }
+
+当对象变为不可用或非激活状态时此函数被调用。当物体被销毁时它将被调用，并且可用于任意清理代码。脚本被卸载时，OnDisable将被调用，OnEnable在脚本被载入后调用。
+
+## 十二、Decommissioning
+
+### void OnDestroy()
+当MonBehaviour将被销毁时，这个函数被调用。OnDestory只会在 预先已经被激活的游戏物体上被调用。
+
+### OnApplicationQuit
+当程序退出后调用
+
 ---
 参考文档：
 
