@@ -1116,7 +1116,7 @@ final double PI = 3.14;
 public class CommandLine{
   public static void main(String[] args){
     for(int i = 0; i  < args.length; i++){
-      System.out.println("args["+i+"]:"+args[i])
+      System.out.println("args["+i+"]:"+args[i]);
     }
   }
 }
@@ -1135,7 +1135,7 @@ public class CommandLine{
 - **一个方法中<font color=yellow>只能指定一个可变参数，他必须是方法的最后一个参数</font>。任何普通的参数必须在它之前声明。**
 
 ```java
-public calss Demo04(){
+public class Demo04(){
   public static void printMax(double...numbers){
     if(numbers.length == 0){
         System.out.println("No argument passed");
@@ -1200,23 +1200,11 @@ public calss Demo04(){
 
 # Java 数组
 
-
-
-
-
 ## 数组的定义
 
 - **数组是相同类型数据的有序集合**
 - **数组描述的是相同类型的若干个数据，按照一定的先后次序排列组合而成。**
 - **其中，每一个数据称作一个数组元素，每个数组元素可以通过一个下标来访问它们**
-
-
-
-
-
-
-
-
 
 ---
 
@@ -1226,7 +1214,7 @@ public calss Demo04(){
 
 ```
 dataType[] arrayRefVar; //首先方法
-或
+//或
 dataType arrayRefVar[];//效果相同
 //以上只是声明，并不像C一样直接可以申请空间
 ```
@@ -1264,15 +1252,32 @@ dataType[] arrayRefVer = new dataType[arraySize];
 
 **静态初始化**
 
+```
     int[] a = {1,2,3};
     Man[] mans = {new Man(1,1),new Man(2,2)};
-    
+```  
+ 
 **动态初始化**
 
-    int[] s = new int[2];
+```
+    int[] a = new int[2];
     a[0] = 1;
     a[1] = 2;
-    
+```
+   
 **数组的默认初始化**
 
 :smiley:**数组是引用类型，它的元素相当于类的实力变量，因此数组一经分配空间，其中的每个元素也被按照实例变量同样的方式被隐式初始化。**
+
+
+---
+
+## 多维数组
+
+- **多维数组可以看成是数组的数组，比如二维数组就是一个特殊的一维数组，其每一个元素都是一个一维数组**
+
+- **二维数组的声明**
+
+```
+int a[][] = new int[2][5];
+```
