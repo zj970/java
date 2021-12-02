@@ -1,3 +1,5 @@
+package base;
+
 public class Hello {
     public static void main(String args[]){
         //单行注释

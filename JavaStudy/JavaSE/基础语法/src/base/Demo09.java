@@ -1,3 +1,5 @@
+package base;
+
 public class Demo09 {
 
     //修饰符， 不存在先后顺序

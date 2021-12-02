@@ -1,3 +1,5 @@
+package base;
+
 public class Demo06 {
     public static void main(String[] args) {
         //操作比较大的数的时候，注意溢出问题

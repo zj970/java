@@ -1,3 +1,5 @@
+package base;
+
 public class Demo02 {
     public static void main(String[] args){
         //八大基本数据类型
