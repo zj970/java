@@ -12,6 +12,12 @@ public class Application {
         System.out.println(student.age);
         xiaoming.study();
         student.study();
+
+        Pet dog = new Pet();
+        dog.name = "旺财";
+        dog.age = 3;
+        dog .shout();
+        
     }
 }
 
