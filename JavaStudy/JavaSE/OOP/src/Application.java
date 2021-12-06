@@ -17,8 +17,8 @@ public class Application {
         dog.name = "旺财";
         dog.age = 3;
         dog .shout();
-        
+
     }
 }
 
-//学程序好？ 对世界进行更好的建模!-----宅
+//学程序好？ 对世界进行更好的建模!-----宅-----
