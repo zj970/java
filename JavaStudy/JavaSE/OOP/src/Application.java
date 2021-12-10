@@ -8,7 +8,7 @@ public class Application {
         //Student 对象就是一个Student类的具体实例!
         Student student = new Student();
         Student xiaoming = new Student();
-        student.name = "小";
+        student.name = "小明";
         System.out.println(student.age);
         xiaoming.study();
         student.study();
