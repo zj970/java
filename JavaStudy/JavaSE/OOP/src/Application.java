@@ -14,7 +14,7 @@ public class Application {
         student.study();
 
         Pet dog = new Pet();
-        dog.name = "旺财";
+        dog.name = "小旺财";
         dog.age = 3;
         dog .shout();
 
