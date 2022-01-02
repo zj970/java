@@ -8,11 +8,12 @@ public class Demo04 {
         System.out.println(a);
 
     }
-
-
     //改变值的方法
     //返回值为空
     public static void SetValue(int a) {
         a = 10;
     }
 }
+
+
+

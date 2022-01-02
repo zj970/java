@@ -18,6 +18,12 @@ public class Application {
         dog.age = 3;
         dog .shout();
 
+
+        Demo06 test = new Demo06();
+        test.setName("小明");
+        System.out.println(test.getName());
+        test.setAge(999);
+        System.out.println(test.getAge());
     }
 }
 

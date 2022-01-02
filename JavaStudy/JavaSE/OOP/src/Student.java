@@ -19,7 +19,5 @@ public class Student {
     public void Write(){
         System.out.println("学生写字");
     }
-
-
-
+    
 }
