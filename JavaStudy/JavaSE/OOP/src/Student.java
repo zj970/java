@@ -1,6 +1,6 @@
 
 //学生类
-public class Student {
+public class Student  {
     //属性：字段
     String name;
     int age;
