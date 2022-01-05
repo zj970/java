@@ -17,7 +17,7 @@ public class Application {
 
         //父类的引用指向了子类，所以这里调用的是A类的方法,这个行为叫做 向上造型
         A c = new B();
-         c.test();//A类
+         c.test();//A类-----这是静态方法的调用结构
 
         A a = new A();
         a.test();
