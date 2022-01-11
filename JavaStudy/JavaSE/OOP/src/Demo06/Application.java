@@ -23,5 +23,30 @@ public class Application {
         //父类的类型 可以指向子类，但不能调用子类独有的方法
         //庖丁解牛的学习精神
         //后天开始新生活
+
+
+        //Object > Person > Student
+
+        //1. 可以把Object,Person,Student 理解成三个包含关系的圆
+        //2. new 一个Student对象，那么这个对象的实际位置就在Student里面
+        //3. 用instanceof进行比较，就是判断对象的实际位置是不是在这个圆里
+        Object object = new Student();
+
+
+        System.out.println(object instanceof Student);//true
+        System.out.println(object instanceof Person);//true
+        System.out.println(object instanceof Teacher);//false
+        System.out.println(object instanceof String);//false
+
+        //类型转换 ： 父，子
+        Person student1 = new Student();//高——>底
+        ((Student) student1).run();
+
+        //子》父 可能会丢失一些子类的方法
+        Student su = new Student();
+        Person p = su;
+        p.run();
+
+
     }
 }
