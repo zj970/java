@@ -47,6 +47,15 @@ public class UserServiceImpl implements UserService,TimeService{
  6. implements可以实现多个接口
 
  7. 必须要重写接口中的方法
+
+ 接口与抽象类的异同
+
+ 相同：
+ 都可以被继承，都规范方法
+ 不同：
+ 抽象单继承，接口多继承
+ 抽象有构造，接口无构造
+ 抽象可具体，接口只规范
  */
 
 
