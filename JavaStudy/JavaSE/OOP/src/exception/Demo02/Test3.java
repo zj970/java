@@ -1,5 +1,5 @@
 package exception.Demo02;
-
+//自定义异常测试
 public class Test3 {
     //可能会存在异常的方法
 
@@ -18,5 +18,4 @@ public class Test3 {
             System.out.println("MyException=>" + e);
         }
     }
-
 }
