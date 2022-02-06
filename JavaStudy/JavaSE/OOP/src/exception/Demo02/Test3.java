@@ -1,7 +1,7 @@
 package exception.Demo02;
 
 public class Test3 {
-    //可能会存在异常的方法
+  
 
     static void test(int a) throws MyException{
         System.out.println("传递的参数为" + a);
