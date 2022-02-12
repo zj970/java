@@ -14,7 +14,7 @@ public class TestFrame2 {
     }
 }
 class MyFrame extends Frame{
-    static  int id = 0;//可能存在多个窗口，我们需要一个计数器
+    static  int id = 0;//存在多个窗口，我们需要一个计数器
 
     public MyFrame(int x,int y,int w,int h,Color color){
         super("MyFrame"+(++id));
