@@ -23,3 +23,5 @@ class MyFrame extends Frame{
         setBounds(x,y,w,h);
     }
 }
+
+//问题：无法关闭窗口
