@@ -1868,6 +1868,8 @@ public class TestFrame {
 解决了窗口无法关闭的问题，
 出现问题：效果未像狂老师那样
 
+原因：如果不主动设置layout(布局管理器），默认是BorderLayout,
+frame.add(contentPane);这条语句默认情况下将contentPane放在了BorderLayout.CENTER位置，且frame上没有其它的组件，因此contentPane覆盖了frame的全部区域。
 ```java
 package com.zj.lesson1;
 
