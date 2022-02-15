@@ -14,6 +14,9 @@ public class TestPanel {
         Panel panel = new Panel();
         Panel panel1 = new Panel();
 
+        //设置布局
+        frame.setLayout(null);
+
         //坐标
         frame.setBounds(300,0,1000,1000);
         frame.setBackground(new Color(40,161,35));
