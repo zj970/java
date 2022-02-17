@@ -2096,5 +2096,8 @@ public class TestGridLayout {
 
 ![布局](E:\StudyNotes\Picture\JavaStudy\表格布局.png)
 
+4. 大小，定位，背景颜色，可见性，监听
+
+#### 布局管理器
 
 ### Swing
