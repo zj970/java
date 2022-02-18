@@ -25,3 +25,4 @@ class MyFrame extends Frame{
 }
 
 //问题：无法关闭窗口
+//原因：未设置frame的布局为null，默认会以最后一个覆盖
