@@ -68,7 +68,7 @@ public class Exdemo01 {
        });
         }*/
 
-    //布局声明，一开始声明面板的时候就必须申明布局格式
+
 
     //狂老师的代码
     public static void main(String[] args) {
@@ -110,5 +110,5 @@ public class Exdemo01 {
             }
         });
     }
-
+//布局声明，一开始声明面板的时候就必须申明布局格式
 }
