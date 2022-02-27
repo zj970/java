@@ -33,5 +33,13 @@ class MyMonitor implements ActionListener{
 
         //e.getActionCommand()获得按钮的信息
         System.out.println("按钮被点击了：msg"+e.getActionCommand());
+
+        if (e.getActionCommand().equals("start")){
+            System.out.println("你点击了开始按钮");
+        }
+        else if (e.getActionCommand().equals("button2-stop")){
+            System.out.println("点击了退出按钮");
+            System.exit(0);
+        }
     }
 }
