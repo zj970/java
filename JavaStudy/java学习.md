@@ -2213,7 +2213,7 @@ class MyActionListener implements ActionListener{
 }
 ```
 
-多个按钮，共享一个事件
+多个按钮，共享一个事件实现
 
 ```java
 package com.zj.lesson2;
