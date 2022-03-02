@@ -31,6 +31,7 @@ class MyActionLictener implements ActionListener{
 
         TextField field = (TextField) e.getSource();
         System.out.println(field.getText());//获得文本框输入的文本
+        //每次输入清空
         field.setText("");//null.""
     }
 }
