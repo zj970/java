@@ -2266,5 +2266,261 @@ class MyMonitor implements ActionListener{
 
 #### 输入框TextField监听
 
+```java
+package com.zj.lesson2;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class TestTextField {
+    public static void main(String[] args) {
+        //服务器应该只有一个启动类
+        new MyFrame();
+    }
+}
+class MyFrame extends Frame{
+    public MyFrame(){
+        TextField textField = new TextField();
+        add(textField);
+        //监听这个文本框输入的文字
+        MyActionLictener myActionLictener = new MyActionLictener();
+        //按下Enter就会触发这个事件
+        textField.addActionListener(myActionLictener);
+        //设置替换编码
+        textField.setEchoChar('*');
+        setVisible(true);
+        pack();
+    }
+}
+class MyActionLictener implements ActionListener{
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        e.getSource();//获得一些资源
+
+        TextField field = (TextField) e.getSource();
+        System.out.println(field.getText());//获得文本框输入的文本
+        //每次输入清空
+        field.setText("");//null.""
+    }
+}
+```
+#### 简易计算器，组合+内部类回顾复习
+
+oop原则：组合大于继承
+```java
+class A extends B{
+    
+}
+
+class A{
+    public B b;//组合
+}
+```
+目前代码：
+
+```java
+package com.zj.practice;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+//简易计算器
+public class TestCalc {
+    public static void main(String[] args) {
+
+        new Calcuator();
+    }
+}
+//计算器类
+class Calcuator extends Frame{
+    public Calcuator(){
+        //三个文本框
+        TextField textField1 = new TextField(10);//字符数
+        TextField textField2 = new TextField(10);
+        TextField textField3 = new TextField(20);
+        //1 个按钮
+        Button button = new Button("=");
+        button.addActionListener(new MyCalculatorListener(textField1,textField2,textField3));
+        //1个标签
+        Label label = new Label("+");
+
+        //布局
+        setLayout(new FlowLayout());//流式布局
+
+        add(textField1);
+        add(label);
+        add(textField2);
+        add(button);
+        add(textField3);
+
+        pack();;
+        setVisible(true);
+    }
+}
+//监听器类
+class MyCalculatorListener implements ActionListener{
+    //获取三个变量
+    private TextField num1,num2,num3;
+
+    public MyCalculatorListener(TextField num1,TextField num2,TextField num3){
+        this.num1 = num1;
+        this.num2 = num2;
+        this.num3 = num3;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        //1.获得加数和被加数
+        int n1 = Integer.parseInt(num1.getText());
+        int n2 = Integer.parseInt(num2.getText());
+
+        //2.将结果放在第三个框
+        num3.setText(""+(n1+n2));
+
+        //3.消除前面两个框
+        num1.setText("");
+        num2.setText("");
+    }
+}
+```
+改造为面向对象的写法
+
+```java
+package com.zj.practice;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+//简易计算器
+public class TestCalc {
+    public static void main(String[] args) {
+
+        new Calcuator().LoadFrame();
+    }
+}
+//计算器类
+class Calcuator extends Frame{
+
+    //三个文本框
+    TextField textField1 = new TextField(10);//字符数
+    TextField textField2 = new TextField(10);
+    TextField textField3 = new TextField(20);
+
+    public void LoadFrame(){
+
+        //1 个按钮
+        Button button = new Button("=");
+        button.addActionListener(new MyCalculatorListener(this));
+        //1个标签
+        Label label = new Label("+");
+
+        //布局
+        setLayout(new FlowLayout());//流式布局
+
+        add(textField1);
+        add(label);
+        add(textField2);
+        add(button);
+        add(textField3);
+
+        pack();;
+        setVisible(true);
+    }
+
+}
+//监听器类
+class MyCalculatorListener implements ActionListener{
+    //直接操作对象
+    private Calcuator calcuator = null;
+
+    public MyCalculatorListener(Calcuator calcuator){
+        this.calcuator = calcuator;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+        //1.获得加数和被加数
+        int n1 = Integer.parseInt(calcuator.textField1.getText());
+        int n2 = Integer.parseInt(calcuator.textField2.getText());
+
+        //2.将结果放在第三个框
+        calcuator.textField3.setText(""+(n1+n2));
+
+        //3.消除前面两个框
+        calcuator.textField1.setText("");
+        calcuator.textField2.setText("");
+    }
+}
+```
+
+内部类实现---内部类的最大好处就是畅通无阻地访问外部类的属性方法
+```java
+package com.zj.practice;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+//简易计算器
+public class TestCalc {
+    public static void main(String[] args) {
+
+        new Calcuator().LoadFrame();
+    }
+}
+//计算器类
+class Calcuator extends Frame{
+
+    //三个文本框
+    TextField textField1 = new TextField(10);//字符数
+    TextField textField2 = new TextField(10);
+    TextField textField3 = new TextField(20);
+
+    public void LoadFrame(){
+
+        //1 个按钮
+        Button button = new Button("=");
+        button.addActionListener(new MyCalculatorListener());
+        //1个标签
+        Label label = new Label("+");
+
+        //布局
+        setLayout(new FlowLayout());//流式布局
+
+        add(textField1);
+        add(label);
+        add(textField2);
+        add(button);
+        add(textField3);
+
+        pack();;
+        setVisible(true);
+    }
+    //监听器类
+    private class MyCalculatorListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+            //1.获得加数和被加数
+            int n1 = Integer.parseInt(textField1.getText());
+            int n2 = Integer.parseInt(textField2.getText());
+
+            //2.将结果放在第三个框
+            textField3.setText(""+(n1+n2));
+
+            //3.消除前面两个框
+            textField1.setText("");
+            textField2.setText("");
+        }
+    }
+}
+
+```
 
 ### Swing
