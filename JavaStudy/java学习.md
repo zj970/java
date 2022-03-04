@@ -2386,7 +2386,7 @@ class MyCalculatorListener implements ActionListener{
     }
 }
 ```
-改造为面向对象的写法
+改造为面向对象的程序
 
 ```java
 package com.zj.practice;
@@ -2522,5 +2522,6 @@ class Calcuator extends Frame{
 }
 
 ```
+
 
 
