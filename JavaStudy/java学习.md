@@ -1818,7 +1818,7 @@ GUI的核心技术： Swing AWT
 2. 工作的时候，也可能需要维护到swing界面，概率极小！
 3. 了解MVC架构，了解监听！
 
-### AWT
+## AWT
 
 ---
 #### AWT介绍
@@ -2523,5 +2523,6 @@ class Calcuator extends Frame{
 
 ```
 
+## Swing
 
 
