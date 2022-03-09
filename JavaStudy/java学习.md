@@ -2520,5 +2520,8 @@ class Calcuator extends Frame{
         }
     }
 }
+```
+
+#### 画笔
 
 
