@@ -2639,5 +2639,40 @@ class MyFrame extends Frame{
 ```
 ![流程.png](img.png)
 #### 窗口监听
+```java
+
+class WindowFrame extends Frame {
+    public WindowFrame(){
+        setBackground(Color.blue);
+        setBounds(100,100,200,200);
+        setVisible(true);
+        addWindowListener(new MyWindowListener());
+    }
+    class MyWindowListener extends WindowAdapter{
+        @Override
+        public void windowClosing(WindowEvent e) {
+            setVisible(false);//隐藏窗口，通过按钮
+            System.exit(0);
+        }
+    }
+}
+```
+优化
+```java
+class WindowFrame extends Frame {
+    public WindowFrame(){
+        setBackground(Color.blue);
+        setBounds(100,100,200,200);
+        setVisible(true);
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                setVisible(false);//隐藏窗口，通过按钮
+                System.exit(0);
+            }
+        });
+    }
+}
+```
 
 #### 键盘监听
