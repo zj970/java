@@ -2714,6 +2714,64 @@ class KeyFrame extends Frame {
 
 ```
 
-### Swing
+## Swing
 
-#### 窗口、面板
+### 窗口、面板
+
+```java
+package com.zj.lesson4;
+
+import javax.swing.*;
+
+public class JFrameDemo {
+    //init();初始化
+    public void init(){
+        //顶级窗口
+        JFrame jframe = new JFrame("这是一个JFrame窗口");
+        jframe.setVisible(true);
+        jframe.setBounds(100,100,200,200);
+
+        //设置文字 Jlabel
+        JLabel jLabel = new JLabel("hello,world");
+        jframe.add(jLabel);
+
+        //关闭事件
+        jframe.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+    public static void main(String[] args) {
+        new JFrameDemo().init();
+    }
+}
+
+```
+
+标签居中
+```java
+package com.zj.lesson4;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class JFrameDemo02 {
+    public static void main(String[] args) {
+        new MyJframe2().init();
+    }
+}
+class MyJframe2 extends JFrame{
+    public void init(){
+        this.setBounds(10,10,200,200);
+        this.setVisible(true);
+        //设置文字 Jlabel
+        JLabel jLabel = new JLabel("hello,world");
+        this.add(jLabel);
+        //让文本居中
+        jLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        //获得一个容器
+        Container contentPane = this.getContentPane();
+        contentPane.setBackground(Color.BLUE);
+    }
+}
+
+```
+
