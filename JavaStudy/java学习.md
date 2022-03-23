@@ -2775,5 +2775,5 @@ class MyJframe2 extends JFrame{
 
 ```
 
-### JDialog弹窗
+
 
