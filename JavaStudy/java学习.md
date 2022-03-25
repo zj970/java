@@ -2827,4 +2827,18 @@ class MyDialogDemo extends JDialog{
     }
 }
 ```
+### 标签
+label
+```
+new label("xxx")
 
+```
+
+### 面板
+
+### 按钮
+
+- 单选按钮
+- 复选按钮
+
+### 列表

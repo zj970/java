@@ -17,7 +17,6 @@ class SpringBootMybatisApplicationTests {
     void contextLoads() throws SQLException {
         System.out.println(dataSource.getClass());
         System.out.println(dataSource.getConnection());
-
     }
 
 }
