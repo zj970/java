@@ -2909,11 +2909,3 @@ public class JScrollDemo extends JFrame {
 }
 
 ```
-
-
-### 按钮
-
-- 单选按钮
-- 复选按钮
-
-### 列表
