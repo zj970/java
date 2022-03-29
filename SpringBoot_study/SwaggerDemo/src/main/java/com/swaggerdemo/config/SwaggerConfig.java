@@ -46,12 +46,6 @@ public class SwaggerConfig {
         //获取项目的环境：通过environment.acceptsProfiles判断是否处于自己设定的环境中
         boolean flag = environment.acceptsProfiles(profiles);
 
-
-
-
-
-
-
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .groupName("周健")
