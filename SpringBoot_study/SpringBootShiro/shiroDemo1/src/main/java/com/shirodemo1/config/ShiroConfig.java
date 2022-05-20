@@ -43,7 +43,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/user/*","authc");
         System.out.println(filterChainDefinitionMap);
 
-        //如果没有权限 登录
+        //如果没有权限登录
         bean.setLoginUrl("/toLogin");
         //未授权页面
         bean.setUnauthorizedUrl("/Unauth");
