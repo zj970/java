@@ -2911,3 +2911,114 @@ public class JScrollDemo extends JFrame {
 ```
 
 ### 按钮
+
+图片按钮
+
+```java
+package com.zj.lesson5;
+import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
+
+public class JButtonDemo01 extends JFrame {
+    public JButtonDemo01(){
+        Container container = this.getContentPane();
+        //将图片变成图标
+        URL resource = JButtonDemo01.class.getResource("tx.jpg");//这里报异常，重启一下IDEA
+        //URL url = ImageIconTest.class.getResource("tx.jpg");
+        Icon icon = new ImageIcon(resource);
+        //把这个图标放在按钮上
+        JButton button = new JButton();
+        button.setIcon(icon);
+        button.setToolTipText("图片按钮");
+        //add
+        container.add(button);
+        this.setVisible(true);
+        this.setSize(500,300);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+    public static void main(String[] args) {
+        new JButtonDemo01();
+    }
+}
+
+```
+
+- 单选按钮
+
+```java
+package com.zj.lesson5;
+
+import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
+public class JButtonDemo02 extends JFrame {
+    public JButtonDemo02(){
+        Container container = this.getContentPane();
+        //将图片变成图标
+        URL resource = JButtonDemo02.class.getResource("tx.jpg");//这里报异常，重启一下IDEA
+        //URL url = ImageIconTest.class.getResource("tx.jpg");
+        Icon icon = new ImageIcon(resource);
+        //弄一个单选框
+        JRadioButton jRadioButton1 = new JRadioButton("jRadioButton1");
+        JRadioButton jRadioButton2 = new JRadioButton("jRadioButton2");
+        JRadioButton jRadioButton3 = new JRadioButton("jRadioButton3");
+
+        //单选框只能选择一个，分组,不分组可以多选
+        ButtonGroup buttonGroup = new ButtonGroup();
+        buttonGroup.add(jRadioButton1);
+        buttonGroup.add(jRadioButton2);
+        buttonGroup.add(jRadioButton3);
+        //add
+        container.add(jRadioButton1,BorderLayout.CENTER);
+        container.add(jRadioButton2,BorderLayout.NORTH);
+        container.add(jRadioButton3,BorderLayout.SOUTH);
+        this.setVisible(true);
+        this.setSize(500,300);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+    public static void main(String[] args) {
+        new JButtonDemo02();
+    }
+}
+
+```
+
+- 复选按钮
+```java
+package com.zj.lesson5;
+
+import javax.swing.*;
+import java.awt.*;
+import java.net.URL;
+
+public class JButtonDemo03 extends JFrame {
+    public JButtonDemo03() {
+        Container container = this.getContentPane();
+        //将图片变成图标
+        URL resource = JButtonDemo02.class.getResource("tx.jpg");//这里报异常，重启一下IDEA
+        //URL url = ImageIconTest.class.getResource("tx.jpg");
+        Icon icon = new ImageIcon(resource);
+        //弄一个多选框
+        JCheckBox jCheckBox1 = new JCheckBox("jCheckBox1");
+        JCheckBox jCheckBox2 = new JCheckBox("jCheckBox2");
+        JCheckBox jCheckBox3 = new JCheckBox("jCheckBox3");
+
+        container.add(jCheckBox1,BorderLayout.CENTER);
+        container.add(jCheckBox2,BorderLayout.NORTH);
+        container.add(jCheckBox3,BorderLayout.SOUTH);
+        this.setVisible(true);
+        this.setSize(500, 300);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public static void main(String[] args) {
+        new JButtonDemo03();
+    }
+}
+
+```
+### 列表
+- 下拉框
+- 
+### 文本框
