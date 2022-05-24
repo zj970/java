@@ -3020,9 +3020,173 @@ public class JButtonDemo03 extends JFrame {
 ```
 ### 列表
 - 下拉框
+
+```java
+package com.zj.lesson6;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class TestComboboxDemo01 extends JFrame {
+    public TestComboboxDemo01(){
+        Container container = new Container();
+        JComboBox status = new JComboBox();
+        status.addItem(null);//项数为-1
+        status.addItem("正在上映");//为0
+        status.addItem("已下架");
+        status.addItem("即将上映");
+        status.setSize(200,200);
+        status.setBackground(Color.black);
+        status.setVisible(true);
+        //监听
+        //status.addActionListener();
+        //status.addItemListener();
+        System.out.println(status.getSelectedIndex());//返回项数
+        System.out.println(status.getSelectedItem());//返回内容
+        container.add(status,BorderLayout.CENTER);
+        this.add(container);
+        this.setSize(500,350);
+        this.setVisible(true);
+        status.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+    public static void main(String[] args) {
+        new TestComboboxDemo01();
+    }
+}
+
+```
+
 - 列表框
+
+```java
+package com.zj.lesson6;
+
+import javax.swing.*;
+import java.awt.*;
+import java.util.Vector;
+
+public class TestComboboxDemo02 extends JFrame {
+    public TestComboboxDemo02(){
+        Container container = new Container();
+        //生成列表的内容
+        String[] contents = {"1","2","3"};
+        //列表中需要放内容
+        JList jList = new JList(contents);
+        //Vector vector = new Vector();
+        //JList jList1 = new JList(vector);
+        //vector.add("1");
+        //vector.add("12");
+        //vector.add("13");
+        container.add(jList);
+        //container.add(jList1);
+        container.setVisible(true);
+        this.add(jList);
+        this.setSize(500,350);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+    public static void main(String[] args) {
+        new TestComboboxDemo02();
+    }
+}
+
+```
+
 - 应用场景
 
   - 选择地区，或者一些单个选项
   - 列表，展示信息，一般是动态扩容
 ### 文本框
+  
+
+- 文本框
+
+```java
+package com.zj.lesson6;
+
+import javax.swing.*;
+import java.awt.*;
+
+//文本框
+public class TestTextDemo01 extends JFrame
+{
+    public TestTextDemo01() throws HeadlessException {
+        Container container = this.getContentPane();
+
+
+        JTextField jTextField = new JTextField("hello");
+        JTextField jTextField2 = new JTextField("world",20);
+        container.add(jTextField,BorderLayout.NORTH);
+        container.add(jTextField2,BorderLayout.SOUTH);
+        this.setSize(500,350);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public static void main(String[] args) {
+        new TestTextDemo01();
+    }
+}
+
+```
+
+- 密码框
+
+```java
+package com.zj.lesson6;
+
+import javax.swing.*;
+import java.awt.*;
+//密码框
+public class TestTextDemo02 extends JFrame {
+    public TestTextDemo02() throws HeadlessException {
+        Container container = this.getContentPane();
+
+        //面板制作，不用
+        JPasswordField jTextField = new JPasswordField();//***
+        jTextField.setEchoChar('*');
+        container.add(jTextField,BorderLayout.NORTH);
+        this.setSize(500,350);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public static void main(String[] args) {
+        new TestTextDemo02();
+    }
+}
+
+```
+
+- 文本域
+
+```java
+package com.zj.lesson6;
+
+import com.zj.lesson5.JScrollDemo;
+
+import javax.swing.*;
+import java.awt.*;
+
+//文本域
+public class TestTextDemo03 extends JFrame {
+    public TestTextDemo03() throws HeadlessException {
+        Container container = this.getContentPane();
+        //文本域
+        JTextArea jTextArea = new JTextArea(20,50);
+        jTextArea.setText("好好学习，天天向上");
+
+        //Scroll面板
+        JScrollPane scrollPane = new JScrollPane(jTextArea);
+        container.add(scrollPane);
+        this.setSize(500,350);
+        this.setVisible(true);
+        this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    }
+
+    public static void main(String[] args) {
+        new TestTextDemo03();
+    }
+}
+```

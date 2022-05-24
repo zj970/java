@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class TestComboboxDemo01 extends JFrame {
     public TestComboboxDemo01(){
-        Container container = new Container();
+        Container container = this.getContentPane();
         JComboBox status = new JComboBox();
         status.addItem(null);//项数为-1
         status.addItem("正在上映");//为0
@@ -20,6 +20,7 @@ public class TestComboboxDemo01 extends JFrame {
         System.out.println(status.getSelectedIndex());//返回项数
         System.out.println(status.getSelectedItem());//返回内容
         container.add(status,BorderLayout.CENTER);
+        //this.add(container);
         this.setSize(500,350);
         this.setVisible(true);
         status.setVisible(true);
