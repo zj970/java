@@ -3194,3 +3194,6 @@ public class TestTextDemo03 extends JFrame {
 # 贪吃蛇
 
 帧，如果时间足够小，就是动画，一秒30帧。
+
+提交失败正在修改
+
