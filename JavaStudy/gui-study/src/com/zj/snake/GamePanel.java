@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 //游戏的面板  //键盘监听器  //定时器
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
@@ -14,7 +15,20 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     boolean isStart = false;//默认是不开始
     snake snake = new snake();
     //定时器
-    Timer timer = new Timer(50, this);//以毫秒为单位
+    Timer timer = new Timer(100, this);//以毫秒为单位
+
+    //食物的坐标
+    int foodx;
+    int foody;
+
+    Random random = new Random();
+
+    public GamePanel() {
+        this.setFocusable(true);//获得焦点事件
+        this.addKeyListener(this);//获得键盘的监听事件
+        timer.start();
+        createFood();
+    }
 
     //绘制面板,游戏里的所有东西都是由此画笔制作
     @Override
@@ -45,6 +59,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         for (int i = 1; i < snake.length; i++) {
             Data.body.paintIcon(this, g, snake.snakex[i], snake.snakey[i]);//画身体部分
         }
+        Data.food.paintIcon(this,g,foodx,foody);
 
         //游戏未开始时
         if (isStart == false) {
@@ -52,12 +67,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
             g.setFont(new Font("微软雅黑", Font.BOLD, 40));//设置字体
             g.drawString("按下快捷键开始游戏", 300, 300);
         }
-    }
-
-    public GamePanel() {
-        this.setFocusable(true);//获得焦点事件
-        this.addKeyListener(this);//获得键盘的监听事件
-        timer.start();
     }
 
     @Override
@@ -134,15 +143,28 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                     snake.snakey[0] = snake.snakey[0] + 25;
                     //边界判断
                     if (snake.snakey[0] > 650) {
-                        snake.snakex[0] = 75;
+                        snake.snakey[0] = 75;
                     }
                     break;
             }
 
+            //吃食物
+            if (snake.snakex[0] == foodx && snake.snakey[0] == foody){
+                snake.length++;//长度加1
+                //再次随机生成食物
+                createFood();
+            }
 
             repaint();//重画页面
         }
         timer.start();//定时器开始
+    }
+
+    //生成食物
+    public void createFood(){
+        //把食物随机分布在界面上
+        foodx = 25 + 25*random.nextInt(35);
+        foody = 75 + 25*random.nextInt(24);
     }
 }
 
