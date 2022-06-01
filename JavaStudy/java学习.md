@@ -3199,6 +3199,12 @@ public class TestTextDemo03 extends JFrame {
 
 定时器 Timer
 
+1. 定义数据
+2. 画上去
+3. 监听事件
+  - 键盘
+  - 事件
+
 ---
 
 

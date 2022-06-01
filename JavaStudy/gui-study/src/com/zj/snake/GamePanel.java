@@ -13,6 +13,8 @@ import java.util.Random;
 public class GamePanel extends JPanel implements KeyListener, ActionListener {
     //游戏当前的状态
     boolean isStart = false;//默认是不开始
+    boolean isFail = false;//游戏失败，默认false
+    int score = 0;//初始化成绩
     snake snake = new snake();
     //定时器
     Timer timer = new Timer(100, this);//以毫秒为单位
@@ -39,6 +41,15 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         Data.header.paintIcon(this, g, 25, 11);//头部广告栏
         g.fillRect(25, 75, 850, 600);//默认的游戏界面
 
+
+        Data.food.paintIcon(this,g,foodx,foody);
+        //画积分
+
+        g.setColor(Color.YELLOW);
+        g.setFont(new Font("微软雅黑", Font.BOLD, 18));//设置字体
+        g.drawString("长度"+snake.length, 750, 35);
+        g.drawString("分数"+score, 750, 53);
+
         //把小蛇画上去
         //方向
         switch (snake.fx) {
@@ -59,13 +70,19 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         for (int i = 1; i < snake.length; i++) {
             Data.body.paintIcon(this, g, snake.snakex[i], snake.snakey[i]);//画身体部分
         }
-        Data.food.paintIcon(this,g,foodx,foody);
 
         //游戏未开始时
         if (isStart == false) {
             g.setColor(Color.WHITE);
             g.setFont(new Font("微软雅黑", Font.BOLD, 40));//设置字体
-            g.drawString("按下快捷键开始游戏", 300, 300);
+            g.drawString("按下空格开始游戏", 300, 300);
+        }
+
+        //游戏失败
+        if (isFail){
+            g.setColor(Color.RED);
+            g.setFont(new Font("微软雅黑", Font.BOLD, 40));//设置字体
+            g.drawString("按下空格重新开始游戏", 300, 300);
         }
     }
 
@@ -80,7 +97,16 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         int keyCode = e.getKeyCode();//获得键盘按键是哪一个
         if (keyCode == KeyEvent.VK_SPACE) {
             //按下的空格
-            isStart = !isStart;
+
+            if (isFail){
+                //重新开始
+                isFail=false;
+                snake.init();
+                createFood();
+                score = 0;
+            }else {
+                isStart = !isStart;
+            }
             repaint();
         }
 
@@ -109,7 +135,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     //事件监听----通过固定事件监听
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (isStart) {
+        if (isStart && !isFail) {
             //如果游戏是开始状态，就让小蛇动起来
             //右移
             for (int i = snake.length - 1; i > 0; i--) {
@@ -147,10 +173,17 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
                     }
                     break;
             }
+            //失败判断，撞到自己就算失败
+            for (int i = 1;i< snake.length;i++){
+                if (snake.snakex[0]==snake.snakex[i] && snake.snakey[0]==snake.snakey[i]){
+                    isFail = true;
+                }
+            }
 
             //吃食物
             if (snake.snakex[0] == foodx && snake.snakey[0] == foody){
                 snake.length++;//长度加1
+                score = addCarry(score,10);
                 //再次随机生成食物
                 createFood();
             }
@@ -165,6 +198,20 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
         //把食物随机分布在界面上
         foodx = 25 + 25*random.nextInt(35);
         foody = 75 + 25*random.nextInt(24);
+    }
+
+    //位运算实现相加
+    int addCarry(int a,int b){
+        int result;
+        int sum,carry;
+        sum = a^b;
+        carry = (a&b)<<1;
+        if (carry==0){
+            result = sum;
+        }else {
+           result = addCarry(sum,carry);
+        }
+        return result;
     }
 }
 
