@@ -1,8 +1,6 @@
 package com.zj.snake;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.io.File;
 import java.net.URL;
 
 //数据中心

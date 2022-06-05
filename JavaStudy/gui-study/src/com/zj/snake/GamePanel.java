@@ -1,6 +1,4 @@
 package com.zj.snake;
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,7 +13,7 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
     boolean isStart = false;//默认是不开始
     boolean isFail = false;//游戏失败，默认false
     int score = 0;//初始化成绩
-    snake snake = new snake();
+    Snake snake = new Snake();
     //定时器
     Timer timer = new Timer(100, this);//以毫秒为单位
 
@@ -88,7 +86,6 @@ public class GamePanel extends JPanel implements KeyListener, ActionListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-
     }
 
     //键盘按下

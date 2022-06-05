@@ -1,7 +1,7 @@
 package com.zj.snake;
 
 //贪吃蛇基本类
-public class snake {
+public class Snake {
     //定义蛇的数据结构
     int length;//蛇的长度
     int[] snakex = new int[600];//蛇的x坐标 25*25
@@ -18,7 +18,7 @@ public class snake {
         fx = "D";
     }
 
-    public snake(){
+    public Snake(){
         init();
     }
 }
