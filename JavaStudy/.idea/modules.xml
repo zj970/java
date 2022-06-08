@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/JavaStudy.iml" filepath="$PROJECT_DIR$/.idea/JavaStudy.iml" />
       <module fileurl="file://$PROJECT_DIR$/gui-study/gui-study.iml" filepath="$PROJECT_DIR$/gui-study/gui-study.iml" />
+      <module fileurl="file://$PROJECT_DIR$/net/net.iml" filepath="$PROJECT_DIR$/net/net.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaSE/基础语法/基础语法.iml" filepath="$PROJECT_DIR$/JavaSE/基础语法/基础语法.iml" />
       <module fileurl="file://$PROJECT_DIR$/JavaSE/基础语法/src/基础语法1.iml" filepath="$PROJECT_DIR$/JavaSE/基础语法/src/基础语法1.iml" />
     </modules>
