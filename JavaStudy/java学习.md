@@ -3343,9 +3343,152 @@ UDP ： 发短信
 - 导弹
 - DDOS :洪水攻击！（饱和攻击）
 
+
 ## TCP
+
 ---
 
 客户端
 
+1. 连接服务器Socket
+2. 发送消息
+
+```java
+package com.zj.lesson02;
+
+import java.io.IOException;
+import java.io.OutputStream;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+
+//客户端
+public class TcpClientDemo01 {
+    public static void main(String[] args) {
+        Socket socket = null;
+        OutputStream outputStream = null;
+        //1. 要知道服务器地址
+        try {
+            InetAddress serverIP = InetAddress.getByName("127.0.0.1");
+            //2.端口号
+            int port = 9999;
+            //3.创建一个socket连接
+            socket = new Socket(serverIP, port);
+            //4.发送消息IO流
+            outputStream = socket.getOutputStream();
+            outputStream.write("你好，服务器".getBytes());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (socket != null) {
+                try {
+                    socket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+}
+
+```
+
 服务器
+
+1. 建立服务的端口 ServerSocket
+2. 等待用户的链接 accept
+3. 接收用的信息
+
+```java
+package com.zj.lesson02;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.ServerSocket;
+import java.net.Socket;
+
+//服务器
+public class TcpServerDemo01 {
+    public static void main(String[] args) {
+        ServerSocket serverSocket = null;
+        Socket accept = null;
+        InputStream inputStream = null;
+        ByteArrayOutputStream byteArrayOutputStream = null;
+
+        //1. 我得有个地址
+        try {
+            serverSocket = new ServerSocket(9999);
+            while(true){
+                //2.等待客户端连接
+                accept = serverSocket.accept();//监听
+                //3.读取客户端的信息
+                inputStream = accept.getInputStream();
+            /*
+            byte[] buffer = new byte[1024];//缓冲区
+            int len;
+            while((len=inputStream.read(buffer))!=-1){
+                String s = new String(buffer,0,len);
+                System.out.println("客户端信息"+s);
+            }//会出现乱码
+             */
+
+                //管道流
+                byteArrayOutputStream = new ByteArrayOutputStream();
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = inputStream.read(buffer)) != -1) {
+                    byteArrayOutputStream.write(buffer, 0, len);
+                }
+                System.out.println("客户端信息：" + byteArrayOutputStream.toString());
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            //关闭资源
+            if (byteArrayOutputStream != null) {
+                try {
+                    byteArrayOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (accept != null) {
+                try {
+                    accept.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            if (serverSocket != null) {
+                try {
+                    serverSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+    }
+}
+
+```
