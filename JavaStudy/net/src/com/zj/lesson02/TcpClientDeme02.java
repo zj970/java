@@ -1,5 +1,6 @@
 package com.zj.lesson02;
 
+import java.io.FileInputStream;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
@@ -11,5 +12,6 @@ public class TcpClientDeme02 {
         //2.创建一个输出流
         OutputStream outputStream = socket.getOutputStream();
         //3.文件流
+        FileInputStream fileInputStream = new FileInputStream("zj.jpp");
     }
 }
