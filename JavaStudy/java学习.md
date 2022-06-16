@@ -3584,7 +3584,7 @@ public class TcpClientDeme02 {
 }
 
 ```
-## Tomcat
+### Tomcat
 
 - 服务器
   - 自定义 Server
@@ -3592,3 +3592,8 @@ public class TcpClientDeme02 {
 - 客户端
   - 自定义C
   - 浏览器B
+
+## UDP
+
+发短信：不用连接，需要知道对方的地址！
+---
