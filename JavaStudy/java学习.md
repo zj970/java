@@ -3597,3 +3597,59 @@ public class TcpClientDeme02 {
 
 发短信：不用连接，需要知道对方的地址！
 ---
+
+- 发消息
+```java
+package com.zj.lesson03;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+
+//不需要连接服务器
+public class UdpClientDemo01 {
+    public static void main(String[] args) throws Exception {
+        //1.建立一个Socket
+        DatagramSocket socket = new DatagramSocket();
+
+        //2.建一个包
+        String msg = "hello,你好啊";
+        //发送给谁
+        InetAddress localhost = InetAddress.getByName("localhost");
+        int port = 9090;
+        //数据 数据的长度，要发送给谁
+        DatagramPacket datagramPacket = new DatagramPacket(msg.getBytes(),0,msg.getBytes().length,localhost,port);
+        //3.发送包
+        socket.send(datagramPacket);
+
+        //4.关闭流
+        socket.close();
+    }
+
+}
+
+```
+- 接收消息
+```java
+package com.zj.lesson03;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+//等待客户端的连接
+public class UdpServiceDemo01 {
+    public static void main(String[] args) throws Exception {
+        //开发端口
+        DatagramSocket socket = new DatagramSocket(9090);
+        //接收数据包
+        byte[] bytes = new byte[1024];
+        DatagramPacket datagramPacket = new DatagramPacket(bytes, 0, bytes.length);
+        socket.receive(datagramPacket);//阻塞接收
+        System.out.println(new String(datagramPacket.getData(),0, datagramPacket.getLength()));
+        //关闭连接
+        socket.close();
+
+    }
+}
+
+```
