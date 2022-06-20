@@ -3655,3 +3655,216 @@ public class UdpServiceDemo01 {
 ```
 
 ### 咨询
+
+- 发送方
+```java
+package com.zj.chat;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+
+
+public class UpdSenderDemo01 {
+
+    public static void main(String[] args) throws Exception {
+        DatagramSocket socket = new DatagramSocket(8888);
+
+        //准备数据:控制台读取System.in
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        while (true){
+            String data = bufferedReader.readLine();
+            byte[] datas = data.getBytes();
+            DatagramPacket packet = new DatagramPacket(datas,0,datas.length,new InetSocketAddress("localhost",6666));
+            socket.send(packet);
+
+            if (data.equals("bye")){
+                break;
+            }
+        }
+
+        socket.close();
+
+    }
+}
+
+```
+
+- 接收方
+```java
+package com.zj.chat;
+
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+
+public class UpdReceiveDemo01 {
+    public static void main(String[] args) throws Exception {
+        DatagramSocket socket = new DatagramSocket(6666);
+
+
+        while (true){
+            //准备接收包裹
+            byte[] container = new byte[1024];
+            DatagramPacket packet = new DatagramPacket(container,0,container.length);
+            byte[] data = packet.getData();
+
+            socket.receive(packet);//阻塞式接收包裹
+            //断开连接
+            String receiceData = new String(data,0, packet.getLength());
+
+            System.out.println(receiceData);
+            if (receiceData.equals("bye")){
+                break;
+            }
+
+        }
+        socket.close();
+    }
+}
+
+```
+---
+### 多人聊天
+
+- 发送
+
+```java
+package com.zj.chat;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
+import java.net.SocketException;
+
+public class TalkSend implements Runnable{
+    DatagramSocket socket = null;
+    BufferedReader reader = null;
+
+    private  int formPort;
+    private String toIP;
+    private int toPort;
+
+    public TalkSend(int formPort, String toIP, int toPort) {
+        this.formPort = formPort;
+        this.toIP = toIP;
+        this.toPort = toPort;
+
+        try {
+            socket = new DatagramSocket(formPort);
+            reader = new BufferedReader(new InputStreamReader(System.in));
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        //准备数据：控制台读取System.in
+        while(true){
+
+
+            try {
+                String data = reader.readLine();
+                byte[] datas = data.getBytes();
+                DatagramPacket packet = new DatagramPacket(datas,0,datas.length,new InetSocketAddress(this.toIP,this.toPort));
+                socket.send(packet);
+                if (data.equals("bye")){
+                    return;
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+}
+
+```
+
+- 接收
+
+```java
+package com.zj.chat;
+
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.SocketException;
+
+public class TalkReceive implements Runnable{
+    DatagramSocket socket = null;
+    private int port;
+    private String msgFrom;
+
+    public TalkReceive(int port,String msgFrom) {
+        this.port = port;
+        this.msgFrom = msgFrom;
+        try {
+            socket =new DatagramSocket(port);
+        } catch (SocketException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void run() {
+        while (true){
+            //准备接收包裹
+            try{
+                byte[] container = new byte[1024];
+                DatagramPacket packet = new DatagramPacket(container,0,container.length);
+                socket.receive(packet);//阻塞式接收数据
+                //断开连接 bye
+                byte[] data = packet.getData();
+                String receiveData = new String(data,0, packet.getLength());
+
+                System.out.println(msgFrom + ":" + receiveData);
+
+                if (receiveData.equals("bye")){
+                    break;
+                }
+
+            } catch (IOException e){
+                e.printStackTrace();
+            }
+
+
+        }
+    }
+}
+
+```
+
+- 线程
+  - 一方
+```java
+package com.zj.chat;
+
+public class TalkStudent {
+    public static void main(String[] args) {
+        //开启两个线程
+        new Thread(new TalkSend(7777,"localhost",9999)).start();
+        new Thread(new TalkReceive(8888,"老师")).start();
+    }
+}
+
+```
+  - 另外一方
+  ```java
+package com.zj.chat;
+
+public class TalkTeacher {
+
+    public static void main(String[] args) {
+        new Thread(new TalkSend(5555,"localhost",8888)).start();
+        new Thread(new TalkReceive(9999,"学生")).start();
+    }
+}
+
+  ```
