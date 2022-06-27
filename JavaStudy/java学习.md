@@ -3912,3 +3912,36 @@ Process 与 Thread
 - 对同一份资源操作时，会存在资源抢夺的问题，需要加入并发控制
 - 线程会带来额外的开销，如CPU调度时间，并发控制开销
 - 每个线程在自己的工作内存交互，内存控制不当会造成数据不一致
+
+三种创建方式
+
+- Thread class : 继承Thread类
+- Runnable : 实现 Runnable 接口
+- Callable接口 : 实现Callable接口
+
+1. Thread 
+
+- 自定义线程类继承Thread类
+- 重写 run() 方法，编写线程执行体
+- 创建线程对象，调用start()方法启动线程
+
+```
+public class StarrtThreadl extends Thread{
+  //线程入口点
+  @Override
+  public void run(){
+    //线程体
+    for(int i = 0;i<20;i++){
+      System.out.println("我在听课======");
+    }
+  }
+}
+
+ public static void main(String[] args){
+         //创建线程对象
+         StartThreadl t = new StartThreadl();
+         t.start();
+        }
+```
+
+线程不一定立即执行，CPU 安排调度
