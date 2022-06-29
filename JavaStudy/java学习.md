@@ -3945,3 +3945,23 @@ public class StarrtThreadl extends Thread{
 ```
 
 线程不一定立即执行，CPU 安排调度
+
+## 实现 Runnable 
+
+- 定义MyRunnable类实现Rnunable接口
+- 实现Run()方法，编写线程执行体
+- 创建线程对象，调用start()方法启动线程
+
+```
+public class StartThread3 implements Runnable{
+  @Override
+  public void run() {
+    //线程体
+    for (int i = 0; i < 20; i++){
+      System.out.println("我在听课======");
+    }
+  }
+}
+```
+
+推荐使用Runnable对象，因为Java单继承的局限性。
