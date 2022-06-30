@@ -3919,7 +3919,7 @@ Process 与 Thread
 - Runnable : 实现 Runnable 接口
 - Callable接口 : 实现Callable接口
 
-1. Thread 
+## 继承Thread 
 
 - 自定义线程类继承Thread类
 - 重写 run() 方法，编写线程执行体
@@ -3965,3 +3965,25 @@ public class StartThread3 implements Runnable{
 ```
 
 推荐使用Runnable对象，因为Java单继承的局限性。
+
+## 小结
+
+- 继承Thread类
+  - 子类继承Thread类具备多线程能力
+  - 启动线程：子类对象.start()
+  - 不建议使用：避免OOP单继承局限性
+- 实现Runnable接口
+  - 实现接口Runnable具备多线程能力
+  - 启动线程：传入对象+Thread对象.start()
+  - 推荐使用:避免单继承局限性，灵活方便，方便同一个对象被多个线程使用
+- 一份资源，多个代理
+
+```
+StartThread4 station = new StartThread4();
+
+//多个代理
+new Thread(station,"小明“),start();
+new Thread(station,"小蓝“),start();
+new Thread(station,"老师“),start();
+new Thread(station,"小红“),start();
+```

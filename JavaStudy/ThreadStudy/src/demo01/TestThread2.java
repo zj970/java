@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.net.URL;
 
 //练习Thread,实现多线程同步下载图片
-public class TestThread2  extends Thread{
+public class TestThread2  implements Runnable{
     private String url;//网络图片地址
     private String name;//保存的文件名
 
@@ -31,9 +31,14 @@ public class TestThread2  extends Thread{
         TestThread2 t3 = new TestThread2("https://tse2-mm.cn.bing.net/th/id/OIP-C.Z3rqi4g44nA3RnjZRk-2GQHaE8?pid=ImgDet&w=5616&h=3744&rs=1","3.jpg");
 
         //线程的结束不是顺序，同时执行
-        t1.start();
-        t2.start();
-        t3.start();
+//        t1.start();
+//        t2.start();
+//        t3.start();
+
+        //采取代理模式
+        new Thread(t1).start();
+        new Thread(t2).start();
+        new Thread(t3).start();
     }
 }
 
