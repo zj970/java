@@ -3987,4 +3987,3 @@ new Thread(station,"小蓝“),start();
 new Thread(station,"老师“),start();
 new Thread(station,"小红“),start();
 ```
-休息

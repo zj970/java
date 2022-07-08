@@ -3,7 +3,6 @@ package com.zj.lesson04;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class URLDown {
