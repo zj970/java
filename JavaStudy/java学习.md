@@ -4162,7 +4162,7 @@ class WebDownloader{
 }
 ```
 
-# Lambda表达式
+## Lambda表达式
 
 - ⋋ 希腊字母表中排序第十一位的字母，英语名称为Lambda
 - 避免匿名内部类定义过多
@@ -4183,7 +4183,7 @@ class WebDownloader{
   ```
   - 对于函数式接口，我们可以通过lambda表达式来创建该接口的对象。
 
-# 静态代理模式
+## 静态代理模式
 
 - 真实对象和代理对象都实现同一个接口
 - 代理对象要代理真实对象
@@ -4191,3 +4191,49 @@ class WebDownloader{
 - 好处
   - 代理对象可以做很多真实对象做不了的事情
   - 真实对象专注做自己的事情
+
+## 线程状态
+
+- 创建状态
+- 就绪状态
+- 运行状态
+- 阻塞状态
+- 死亡状态
+
+![img_4.png](img_4.png)
+
+- Thread t = new Thread() 线程对象一旦创建就进入到了新生状态，
+- 当调用start()方法，线程就进入就绪状态，但不意味着立即调度执行
+- 当调用sleep,wait或同步锁定时，线程进入阻塞状态，就是代码不往下执行，阻塞事件解除后，重新进入就绪状态，等待cpu调度执行
+- 进入运行状态，线程才真正执行线程体的代码块
+- 线程中断或者结束，一旦进入死亡状态，就不能再次启动。
+
+### 线程方法
+
+![img_5.png](img_5.png)
+
+### 停止线程
+
+- 不推荐使用JDK提供的stop()、destroy()方法【已废弃】。
+- 推荐线程自己停止下来
+- 建议使用一个标志位进行终止变量，当flag=false，则终止线程运行
+
+```java
+public class TestStop implements Runnable {
+  //1.线程中定义线程体使用的标识
+  private boolean flag = true;
+
+  @Override
+  public void run() {
+    //2.线程体使用该标识
+    while (flag) {
+      System.out.println("run...Thread");
+    }
+  }
+  
+  //3.对外提供方法改变标识
+  public void stop(){
+      this.flag = false;
+  }
+}
+```
