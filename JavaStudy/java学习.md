@@ -4237,3 +4237,20 @@ public class TestStop implements Runnable {
   }
 }
 ```
+## 线程休眠
+
+- sleep(时间)指定当前线程阻塞的毫秒数;
+- sleep存在异常InterruptedException;
+- sleep时间达到后线程进入就绪状态；
+- sleep可以模拟网络延迟，倒计时等。
+- 每个对象都有一个锁，sleep不会释放锁；
+
+```
+public void GetOnlineInfo(){
+  HttpBrowserCapabilities bc = Request.Browser;
+  int hbcWifth = bc.ScreenPixelsWidth;
+  //string hbcHeifht = bc.ScreenPixelsHeight.ToString();
+  //项目经理要求这里运行缓慢，好让客户给钱优化，并得到明显的速度提升
+  Thread.Sleep(2000);
+}
+```
