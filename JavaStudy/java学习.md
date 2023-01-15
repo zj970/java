@@ -4260,3 +4260,62 @@ public void GetOnlineInfo(){
 - 礼让线程，让当前正在执行的线程暂停，但不阻塞
 - 将线程从运行状态转换为就绪状态
 - 让CPU重新调度，礼让不一定成功！看CPU心情
+
+代码示例：
+
+```java
+package state;
+
+/**
+ * <p>
+ * 测试礼让线程
+ * 礼让不一定成功，看CPU心情
+ * </p>
+ *
+ * @author: zj970
+ * @date: 2023/1/15
+ */
+public class TestYield {
+    public static void main(String[] args) {
+        MyYield myYield = new MyYield();
+
+        new Thread(myYield, "a").start();
+        new Thread(myYield, "b").start();
+    }
+}
+
+class MyYield implements Runnable {
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + "--------线程开始执行");
+        if (Thread.currentThread().getName().equals("a")){
+            Thread.yield();//礼让
+        }
+        System.out.println(Thread.currentThread().getName() + "--------线程开始停止");
+
+    }
+}
+```
+运行结果： 
+
+```
+I
+a--------线程开始执行
+a--------线程开始停止
+b--------线程开始执行
+b--------线程开始停止
+
+II
+a--------线程开始执行
+b--------线程开始执行
+a--------线程开始停止
+b--------线程开始停止
+
+```
+
+## 线程强制执行
+
+- Join合并线程，待此线程执行后，再执行其他线程，其他 线程阻塞
+- 可以想象成插队
+
