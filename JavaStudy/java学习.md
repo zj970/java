@@ -4319,3 +4319,282 @@ b--------线程开始停止
 - Join合并线程，待此线程执行后，再执行其他线程，其他 线程阻塞
 - 可以想象成插队
 
+```java
+package state;
+
+/**
+ * <p>
+ * 测试线程Join方法
+ * 它使主线程进行等待，被插入的线程执行结束后才执行
+ * join就是阻塞当前线程，等join的线程执行完毕后，被阻塞的线程才执行
+ * </p>
+ *
+ * @author: zj970
+ * @date: 2023/1/15
+ */
+public class TestJoin implements Runnable {
+    @Override
+    public void run() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println("线程vip来了=================" + i);
+        }
+    }
+
+    public static void main(String[] args) {
+        //启动我们的线程
+        TestJoin testJoin = new TestJoin();
+        //静态代理模式
+        Thread thread = new Thread(testJoin);
+        //主线程
+        for (int i = 0; i < 500; i++) {
+            if (i == 200){
+                //插队
+                try {
+                    thread.start();
+                    thread.join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("main====" + i);
+        }
+    }
+}
+
+```
+
+## 线程状态观测
+
+### Thread.State
+
+线程状态。线程可以处于以下状态之一。  
+
+- NEW 
+
+&emsp;&emsp;尚未启动的线程处于此状态。 
+
+- RUNNABLE 
+
+&emsp;&emsp;在Java虚拟机中执行的线程处于此状态
+
+- BLOCKED 
+
+&emsp;&emsp;被阻塞等待监视器锁定的线程处于此状态。  
+
+- WAITING
+
+&emsp;&emsp;正在等待另一个线程执行特定动作的线程处于此状态。
+
+- TIMED_WAITING
+
+&emsp;&emsp;正在等待另一个线程执行动作达到指定等待时间处于此状态。  
+
+&emsp;&emsp;一个线程可以在给定时间点处于一个状态。这些状态是不反映任何操作系统线程状态的虚拟机状态。
+
+代码示例：
+```java
+package state;
+
+/**
+ * <p>
+ *  观察测试线程的状态
+ * </p>
+ *
+ * @author: zj970
+ * @date: 2023/1/16
+ */
+public class TestState {
+    public static void main(String[] args) {
+        Thread thread = new Thread(() -> {
+            for (int i = 0; i < 5; i++) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("/////////");
+        });
+        //观察状态
+        Thread.State state =  thread.getState();
+        //NEW
+        System.out.println(state);
+
+        //观察启动后
+        thread.start();
+        //启动线程
+        state =  thread.getState();
+        //Run
+        System.out.println(state);
+        //只要线程不终止，就一直输出状态
+        while (state != Thread.State.TERMINATED){
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            //更新线程状态
+            state = thread.getState();
+            //输出
+            System.out.println(state);
+        }
+        //thread.start();//线程不能死而复生
+    }
+}
+
+```
+
+
+![img_6.png](img_6.png)
+
+## 线程优先级  
+- Java提供一个线程调度器来监控程序中启动后进入就绪状态的所有线程，线程调度器按照优先级决定应该调用哪个线程来执行。  
+- 线程的优先级用数字表示，范围从1~10.  
+  - Thread.MIN_PRIORITY = 1;//线程最小的优先级
+  - Thread.MAX_PRIORITY = 10;//线程最大的优先级
+  - Thread.NORM_PRIORITY = 5;//分配给线程的默认优先级
+  
+- 使用以下方式改变或获取优先级  
+  - getPriority()
+  - setPriority(int value)
+  
+
+代码实例：  
+```java
+package state;
+
+/**
+ * <p>
+ *  测试线程的优先级
+ *  由于本机是多线程CPU，这里并不是可以很直观的看到效果
+ *  不过线程的优先级是可以设置的，但是要看CPU实际调度
+ * </p>
+ *
+ * @author: zj970
+ * @date: 2023/1/16
+ */
+public class TestPriority {
+    public static void main(String[] args) {
+        //打印主线程默认优先级
+        System.out.println(Thread.currentThread().getName() + "------------------>" + Thread.currentThread().getPriority());
+
+        MyPriority myPriority = new MyPriority();
+
+        Thread t1 = new Thread(myPriority);
+        Thread t2 = new Thread(myPriority);
+        Thread t3 = new Thread(myPriority);
+        Thread t4 = new Thread(myPriority);
+        Thread t5 = new Thread(myPriority);
+        Thread t6 = new Thread(myPriority);
+
+        //先设置优先级再启动
+        t1.start();
+
+        t2.setPriority(1);
+        t2.start();
+
+        t3.setPriority(4);
+        t3.start();
+
+        t4.setPriority(Thread.MAX_PRIORITY);
+        t4.start();
+
+        t5.setPriority(2);
+        t5.start();
+
+        t6.setPriority(9);
+        t6.start();
+
+    }
+}
+
+class MyPriority implements Runnable{
+
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println(Thread.currentThread().getName() + "----> " + Thread.currentThread().getPriority());
+    }
+}
+```
+
+## 守护线程(daemon)
+
+- 线程分为用户线程和守护线程
+- 虚拟机必须确保用户线程执行完毕
+- 虚拟机不用等待守护线程执行完毕
+- 如：后台记录操作日志、监控内存、垃圾回收等待。
+
+代码示例：
+
+```java
+package state;
+
+/**
+ * <p>
+ *  测试守护线程
+ * </p>
+ *
+ * @author: zj970
+ * @date: 2023/1/16
+ */
+public class TestDaemon {
+    public static void main(String[] args) {
+       God god = new God();
+       You you = new You();
+
+       Thread thread = new Thread(god);
+       //默认值为false，表示是用户线程，正常的线程都是用户线程；true表示为守护线程
+       thread.setDaemon(true);
+       thread.start();
+
+       //用户线程启动
+       new Thread(you).start();
+
+    }
+}
+
+class God implements Runnable{
+
+    @Override
+    public void run() {
+        while (true){
+            System.out.println("上帝守护你");
+        }
+    }
+}
+
+class You implements Runnable{
+
+    @Override
+    public void run() {
+        System.out.println("Hello, world");
+        for (int i = 0; i < 36500; i++) {
+            System.out.println("你活了 " + i + "天，都开心的活着");
+        }
+        System.out.println("goodBye ! world!");
+    }
+}
+```
+
+## 线程同步
+
+多个线程操作同一个资源。
+
+- 并发：同一个对象被多个线程同时操作
+
+- 线程同步
+  - 现实生活中，我们会遇到“同一个资源，多人都想使用”的问题，比如食堂排队打饭，每个人都想吃饭，最天然的解决方法就是，排队，一个一个来。  
+  - 处理多线程问题时，多个现成饭访问同一个对象，并且某些线程还想修改这个对象，这时候我们就需要 线程同步，线程同步其实就是一种等待机制，多个需要同时访问此对象的线程进入这个对象的等待池形成队列，等待前面线程使用完毕，下一个线程再使用。
+  
+- 队列和锁
+
+- 线程同步 
+  - 由于同一进程的多个线程共享同一块存储空间，在带来方便的同时，也带来了访问冲突问题，为了保证数据在方法被访问时的正确性，在访问时加入<font color=red>锁机制Synchronized</font>，当一个线程获得对象的排它锁，独占资源，其他线程必须等待，使用后释放锁即可，存在以下问题：  
+    - 一个线程持有锁会导致其他所有需要此锁的线程挂起；
+    - 在多线程竞争下，加锁，释放锁会导致比较多的上下文切换和调度延时，引起性能问题；
+    - 如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能问题
