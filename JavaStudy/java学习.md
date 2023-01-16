@@ -4598,3 +4598,173 @@ class You implements Runnable{
     - 一个线程持有锁会导致其他所有需要此锁的线程挂起；
     - 在多线程竞争下，加锁，释放锁会导致比较多的上下文切换和调度延时，引起性能问题；
     - 如果一个优先级高的线程等待一个优先级低的线程释放锁会导致优先级倒置，引起性能问题
+  
+
+### 三大不安全案例
+
+1. 买票
+```java
+package syn;
+
+/**
+ * <p>
+ *  不安全的买票
+ *  多线程操作同一对象会导致出现负数
+ * </p>
+ *
+ * @author: zj970
+ * @date: 2023/1/16
+ */
+public class UnsafeBuyTicket {
+    public static void main(String[] args) {
+        BuyTicket station = new BuyTicket();
+        new Thread(station,"甲").start();
+        new Thread(station,"乙").start();
+        new Thread(station,"丙").start();
+    }
+
+}
+
+class BuyTicket implements Runnable{
+
+    //票
+    private int ticketNums = 10;
+    private boolean flag = true;//外部停止方式
+    @Override
+    public void run() {
+        //买票
+        while (flag){
+            buy();
+        }
+    }
+
+    private void buy(){
+        //判断是否有票
+        if (ticketNums <= 0)
+        {
+            flag = false;
+            return;
+        }
+        //模拟延时
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //买票
+        System.out.println(Thread.currentThread().getName() + "拿到====" + ticketNums--);
+    }
+}
+
+```
+
+2. 银行取钱
+
+```java
+package syn;
+
+/**
+ * <p>
+ * 不安全的取钱
+ * 两个人去银行去取钱
+ * </p>
+ *
+ * @author: zj970
+ * @date: 2023/1/16
+ */
+public class UnsafeBank {
+    public static void main(String[] args) {
+        //账户
+        Account account = new Account(100,"结婚基金");
+        Drawing you = new Drawing(account,50,"你");
+        Drawing girlFriend = new Drawing(account,100,"girlFriend");
+        you.start();
+        girlFriend.start();
+    }
+}
+
+//账户
+class Account {
+    //余额
+    int money;
+    //卡名
+    String name;
+
+    public Account(int money, String name) {
+        this.money = money;
+        this.name = name;
+    }
+}
+
+//银行：模拟取款
+class Drawing extends Thread {
+    //账户
+    Account account;
+    //取了多少钱
+    int drawingMoney;
+    //现在手里有很多钱
+    int nowMoney;
+
+    public Drawing(Account account, int drawingMoney, String name) {
+        super(name);
+        this.account = account;
+        this.drawingMoney = drawingMoney;
+    }
+
+    @Override
+    public void run() {
+        if (account.money - drawingMoney < 0) {
+            System.out.println(Thread.currentThread().getName() + "钱不够，取不了");
+            return;
+        }
+        //sleep可以放大问题的发生性
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        //卡内余额 = 余额 - 你取的钱
+        account.money = account.money - drawingMoney;
+        //你手里的钱
+        nowMoney = nowMoney + drawingMoney;
+        System.out.println(account.name + "余额为：" + account.money);
+        //Thread.currentThread().getName() = this.getName();
+        System.out.println(this.getName() + "手里的钱：" + nowMoney);
+    }
+}
+
+
+
+```
+
+3. 不安全的集合
+```java
+package syn;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * <p>
+ *  线程不安全的集合
+ * </p>
+ *
+ * @author: zj970
+ * @date: 2023/1/16
+ */
+public class UnsafeList {
+    public static void main(String[] args) throws InterruptedException {
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i < 10000; i++) {
+            new Thread(()->{
+                list.add(Thread.currentThread().getName());
+            }).start();
+        }
+        Thread.sleep(3000);
+        System.out.println(list.size());
+
+    }
+}
+
+```
