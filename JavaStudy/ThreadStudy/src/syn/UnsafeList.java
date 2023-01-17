@@ -16,7 +16,9 @@ public class UnsafeList {
         List<String> list = new ArrayList<String>();
         for (int i = 0; i < 10000; i++) {
             new Thread(()->{
-                list.add(Thread.currentThread().getName());
+                synchronized (list) {
+                    list.add(Thread.currentThread().getName());
+                }
             }).start();
         }
         Thread.sleep(3000);
