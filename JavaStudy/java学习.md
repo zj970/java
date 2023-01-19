@@ -4939,3 +4939,8 @@ class Makeup extends Thread {
     }
 }
 ```
+
+### Lock锁
+- 从JDK 5.0 i ,Java提供了更强大的线程同步机制——通过显示定义同步锁对象来实现同步。同步锁使用Lock锁对象充当  
+- java.util.concurrent.locks.Lock接口是控制多个线程对共享资源进行访问的工具。锁提供了对共享资源的额独占访问，每次只能有一个线程对Lock对象加锁，线程开始访问共享资源之前应先获得Lock对象  
+- ReentrantLock类实现了Lock，它拥有与synchronized相同的并发性和内存语义，在实现线程安全的控制中，比较常用的是ReentrantLock，可以显示加锁、释放锁。
