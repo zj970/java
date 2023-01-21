@@ -77,6 +77,7 @@ class Makeup extends Thread {
                     System.out.println(this.girlName + "获得口红的锁");
 
                 }*/
+
             }
 
             synchronized (lipstick) {
