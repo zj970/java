@@ -13,3 +13,7 @@ T
 $ThreadStudy/src/state/TestState.java,b/5/b512575cbb5b6bee5f5879508d94ad1ae2105a8f
 S
 #ThreadStudy/src/syn/UnsafeList.java,4/3/4374ad2e851bccbbfb03dfb44b81950c3863cc5c
+S
+#ThreadStudy/src/senior/TestPC2.java,b/2/b2776b545f5fafd4d906bf0e3fd4fe3ca076ed88
+R
+"ThreadStudy/src/senior/TestPC.java,1/2/1249c163a7b25007395c4b9a17a00550983ab26e
