@@ -17,3 +17,21 @@ S
 #ThreadStudy/src/senior/TestPC2.java,b/2/b2776b545f5fafd4d906bf0e3fd4fe3ca076ed88
 R
 "ThreadStudy/src/senior/TestPC.java,1/2/1249c163a7b25007395c4b9a17a00550983ab26e
+T
+$ThreadStudy/src/senior/TestPool.java,4/c/4c8cdbc85dd45df27fc2e270056ddb63bed28301
+U
+%ThreadStudy/src/senior/ThreadNew.java,b/b/bbe65ec4ad80c7660ed0b07166bade7337184716
+X
+(ThreadStudy/src/demo02/TestCallable.java,c/0/c0b2c871fd11036e6b11111f0679eefb3808057e
+V
+&ThreadStudy/src/deadlock/DeadLock.java,c/f/cfce304fcfdd4bd7501a44cc99f6f26035ab5bc2
+T
+$ThreadStudy/src/senior/TestLock.java,d/9/d9d9e8c9fb6b56c14823ff51e901de644720f51c
+X
+(ThreadStudy/src/syn/UnsafeBuyTicket.java,5/c/5cdc57fc1c79f24cd6b71d58c1be0ad72b79e17a
+S
+#ThreadStudy/src/syn/UnsafeBank.java,1/4/14ecec8e46e362c0933ef6afea21a25322096b22
+P
+ ThreadStudy/src/syn/TestJUC.java,9/5/9585d3e71893f74d5bde17161adb70426b84dc56
+I
+annotation/annotation.iml,1/4/1486a1131f89ec7dedfadb8c276c7ff3ac68170f

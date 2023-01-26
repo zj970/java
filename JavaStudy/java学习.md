@@ -5341,4 +5341,15 @@ class MyThread implements Runnable {
   - 注解是以“@注释名”在代码中存在，还可以添加一些参数值，例如：@SuppressWarnings(value="unchecked")
   
 - Annotation在哪里使用？  
-  - 可以附加在package,class,method,field等上面，相当于给他们添加了额外的辅助信息，我们可以通过反射机制编制实现对这些元数据的访问
+  - 可以附加在package,class,method,field等上面，相当于给他们添加了额外的辅助信息，我们可以通过反射机制编制实现对这些元数据的访问  
+  
+
+### 内置注解  
+- @Override:定义在java.lang.Override中，此注释只适用于修辞方法，表达一个方法声明打算重写超类中，另一个方法声明。  
+- @Deprecated:定义在java.lang.Deprecated中，此注释可以用于修辞方法，属性，类、表示不鼓励程序员使用这样的元素，通常是因为它很危险或者存在更好的选择。  
+- @SuppressWarnings:定义在java.lang.SuppressWarnings中，用来抑制编译时的警告信息。  
+  - 与前两个注释有所不同，你需要添加一个参数才能正确使用，这些参数都是已经定义好了的我们选择性的使用就好了  
+  - @SuppressWarings("all")  
+  - @SuppressWarings("unchecked")
+  - @SuppressWarings(value=("uncheck","deprecation"))
+  - 等等.....
