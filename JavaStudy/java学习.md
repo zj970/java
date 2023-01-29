@@ -5361,4 +5361,15 @@ class MyThread implements Runnable {
   - @Target:用于描述注解的使用范围（即：被描述的注解可以用在什么地方） 
   - @Retention:表示需要在什么级别保存该注释信息，用于描述注解的生命周期（SOURCE< CLASS < RUNTIME）  
   - @Document：说明该注解将包含在javadoc中  
-  - @Inherited:说明子类可以继承父类中的该注解
+  - @Inherited:说明子类可以继承父类中的该注解  
+  
+### 自定义注解  
+- 使用@interface自定义注解时，自动继承了java.lang.annotation.Annotation接口  
+- 分析：  
+  - @interface用来声明一个注解，格式：public @interface注解名{自定义内容}  
+  - 其中的每一个方法实际上是声明了一个配置参数。  
+  - 方法的名称就是参数的名称  
+  - 返回值类型就是参数的类型(返回值只能是基本类型，Class,String,enum)  
+  - 可以通过default来声明参数的默认值  
+  - 如果只有一个参数成员，一般参数名为value  
+  - 注解元素必须要有值，我们定义注解元素时，经常使用字符串，0作为默认值
