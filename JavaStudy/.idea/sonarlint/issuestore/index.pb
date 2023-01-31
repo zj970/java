@@ -35,5 +35,3 @@ P
  ThreadStudy/src/syn/TestJUC.java,9/5/9585d3e71893f74d5bde17161adb70426b84dc56
 I
 annotation/annotation.iml,1/4/1486a1131f89ec7dedfadb8c276c7ff3ac68170f
-T
-$annotation/src/com/zj970/Test01.java,d/7/d7b1bb3dbcad79104bdc8564b1763137e7d5b846

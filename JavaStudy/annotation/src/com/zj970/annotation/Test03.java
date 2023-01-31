@@ -1,4 +1,4 @@
-package com.zj970;
+package com.zj970.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

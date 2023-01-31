@@ -1,4 +1,4 @@
-package com.zj970;
+package com.zj970.annotation;
 
 import java.util.ArrayList;
 import java.util.List;
