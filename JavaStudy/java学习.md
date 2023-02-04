@@ -5415,4 +5415,28 @@ Java反射机制提供的功能
 &emsp;&emsp;在Object类中定义了一下的方法，此方法将被所有子类继承  
 > public final Class getClass()
 
-&emsp;&emsp;以上的方法返回值的类型是一个Class类，此类是Java反射的源头，实际上所谓反射从程序的运行结果来看也很好理解，即：可以通过对象反射求助出了类的名称
+&emsp;&emsp;以上的方法返回值的类型是一个Class类，此类是Java反射的源头，实际上所谓反射从程序的运行结果来看也很好理解，即：可以通过对象反射出了类的名称  
+&emsp;&emsp;对象照镜子后可以得到的信息：某个类的属性、方法和构造器、某个类到底实现了哪些接口。对于每个类而言，JRE都为其保留一个不变的Class类型的对象。一个Class对象包含了特定某个结构(class/interface/enum/annotation/primitive type/void/[])的有关信息。  
+- Class本身也是一个类  
+- Class对象只能由系统建立对象  
+- 一个加载的类在JVM中只会有一个Class实例  
+- 一个Class对象对应的是一个加载到JVM中的一个.class文件  
+- 每个类的实例都会记得自己是由那个Class实例所生成  
+- 通过Class可以完整地得到一个类中的所有被加载的结构  
+- Class类是Reflection的根源，针对任何你想动态加载、运行的类，唯有先获得相应的Class对象
+
+### Class类的常用方法
+|方法名|功能说明|
+|:----|:----:|
+|static ClassforName(String name)|返回指定类名name的Class对象|
+|Object newInstance()|调用缺省构造函数，返回Class对象的一个实例|
+|getName()|返回当前Class对象所表示的实体（类，接口，数组类或void）的名称|
+|Class getSuperClass()|返回当前Class对象的弗雷的Class对象|  
+|Class[] getInterfaces()|获取当前Class对象的接口|  
+|ClassLoader getClassLoader()|返回该类的类加载器|  
+|ClassLoader[] getConstructors()|返回一个包含某些Constructor对象的数组|  
+|Method getMothed(String name,Class...T)|返回一个Method对象，ciduix的形参类型为paramType|  
+|Field[] getDeclaredFields()|返回一个Field对象的一个数组|    
+
+#### 获取Class类的实例  
+- 若已知
