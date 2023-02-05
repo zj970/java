@@ -5439,4 +5439,14 @@ Java反射机制提供的功能
 |Field[] getDeclaredFields()|返回一个Field对象的一个数组|    
 
 #### 获取Class类的实例  
-- 若已知
+- 若已知具体的类，通过了类的class属性获取，该方法最为安全可靠，程序性能最高。  
+> Class clazz = Person.class;
+
+- 已知某个类的实例，调用该实例的getClass()方法获取Class对象  
+> Class clazz = person.getClass();  
+
+- 已知一个类的全类名，且该类在类路径下，可通过Class类的静态方法forName()获取，可能抛出ClassNotFoundException  
+> Class clazz = Class.forName("demo01.Student");
+
+- 内置的基本数据类型可以直接用类名.Type  
+- 还可以利用ClassLoader
