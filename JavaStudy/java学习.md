@@ -5449,4 +5449,13 @@ Java反射机制提供的功能
 > Class clazz = Class.forName("demo01.Student");
 
 - 内置的基本数据类型可以直接用类名.Type  
-- 还可以利用ClassLoader
+- 还可以利用ClassLoader  
+
+### 哪些类可以有Class对象  
+- class：外部类，成员（成员内部类，静态内部类），局部内部类，匿名内部类。  
+- interface:接口  
+- []:数组  
+- enum:枚举  
+- annotation:注解@interface  
+- primitive type:基本数据类型  
+- void
