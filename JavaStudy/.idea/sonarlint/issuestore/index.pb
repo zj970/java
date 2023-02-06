@@ -43,3 +43,9 @@ _
 /annotation/src/com/zj970/annotation/Test02.java,c/1/c13162d22a4f36c4abe41786ebd4aa6c40ce75b1
 _
 /annotation/src/com/zj970/annotation/Test03.java,8/e/8e64fde07ad1f7536388a6a20dcc0a1db6efafc8
+_
+/annotation/src/com/zj970/reflection/Test02.java,f/1/f1a80d89bbc19d9031615c6d3e0811ff5adc7047
+_
+/annotation/src/com/zj970/reflection/Test03.java,8/b/8b5256493cd0b902ee2ff8f65e4b22d5c20f6628
+_
+/annotation/src/com/zj970/reflection/Test04.java,a/7/a75ad574ec38d673ba82a63ba7c696b0f8d08945
