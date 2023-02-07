@@ -49,3 +49,9 @@ _
 /annotation/src/com/zj970/reflection/Test03.java,8/b/8b5256493cd0b902ee2ff8f65e4b22d5c20f6628
 _
 /annotation/src/com/zj970/reflection/Test04.java,a/7/a75ad574ec38d673ba82a63ba7c696b0f8d08945
+C
+HTTP请求错误.md,2/7/27f23dca3225dc9c623e20edf468fcd164070e16
+_
+/annotation/src/com/zj970/reflection/Test05.java,1/7/17f60e6789cbd003616b96ab4a13b5883bfc9561
+_
+/annotation/src/com/zj970/reflection/Test06.java,3/0/309695857be9d6d3a5c1b1e1e37c87a41ca21f36
