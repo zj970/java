@@ -5501,4 +5501,14 @@ Java反射机制提供的功能
 
 源程序(*.java文件)-->Java编译器-->字节码(.class文件)-->类加载器-->字节码校验器-->解释器-->操作系统平台
 
-![img_11.png](img_11.png)
+![img_11.png](img_11.png)  
+
+### 获取类的运行时结构  
+通过反射获取运行时类的完整结构  
+Field、Method、Constructor、Superclass、Interface、Annotation  
+- 实现的全部结构  
+- 所继承的父类  
+- 全部的构造器  
+- 全部的方法  
+- 全部的Field  
+- 注解等等
