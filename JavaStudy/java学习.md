@@ -5511,4 +5511,9 @@ Field、Method、Constructor、Superclass、Interface、Annotation
 - 全部的构造器  
 - 全部的方法  
 - 全部的Field  
-- 注解等等
+- 注解等等  
+
+### 小结  
+- 在实际的操作中，取得类信息的操作代码，并不会经常开发  
+- 一定要熟悉java.lang.reflect包的许哦用，反射机制。  
+- 如何取得树形、方法、构造器的名称，修饰符等

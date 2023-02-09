@@ -53,3 +53,5 @@ _
 /annotation/src/com/zj970/reflection/Test05.java,1/7/17f60e6789cbd003616b96ab4a13b5883bfc9561
 _
 /annotation/src/com/zj970/reflection/Test06.java,3/0/309695857be9d6d3a5c1b1e1e37c87a41ca21f36
+_
+/annotation/src/com/zj970/reflection/Test07.java,6/4/64ae239bbf0fe796653632437ae3168b5a50d00b
