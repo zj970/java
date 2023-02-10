@@ -5516,4 +5516,23 @@ Field、Method、Constructor、Superclass、Interface、Annotation
 ### 小结  
 - 在实际的操作中，取得类信息的操作代码，并不会经常开发  
 - 一定要熟悉java.lang.reflect包的许哦用，反射机制。  
-- 如何取得树形、方法、构造器的名称，修饰符等
+- 如何取得树形、方法、构造器的名称，修饰符等  
+
+### 有了Class对象能做什么？  
+- 创建类的对象：调用Class对象的newInstance()方法  
+  - 类必须有一个无参的构造器  
+  - 类的构造器的访问权限需要足够  
+
+思考？难道没有无参的构造器就就不能创建对象了吗？只要在操作的时候明确的调用类中的构造器，并且将参数传递进去之后，才可以实例化操作。  
+
+- 步骤如下：
+1. 通过Class类的getDeclaredConstructor(Class... parameterTypes)取得本类的指定形参的构造器  
+2. 向构造器的形参中传递一个对象数组进去，里面包含了构造器中所需要的各个参数
+3. 通过Constructor实例化对象
+
+### 调用指定的方法  
+通过反射，调用类中的方法，通过Method类完成。
+1. 通过Class类的getMethod(String name, Class...parameterTypes)方法取得一个Method对象，并设置此方法操作时所需要的参数类型  
+2. 之后使用Object invoke(Object obj,Object[] args)进行调用，并向方法中传递要设置的obj对象的参数信息
+
+![img_12.png](img_12.png)
