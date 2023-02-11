@@ -5535,4 +5535,12 @@ Field、Method、Constructor、Superclass、Interface、Annotation
 1. 通过Class类的getMethod(String name, Class...parameterTypes)方法取得一个Method对象，并设置此方法操作时所需要的参数类型  
 2. 之后使用Object invoke(Object obj,Object[] args)进行调用，并向方法中传递要设置的obj对象的参数信息
 
-![img_12.png](img_12.png)
+![img_12.png](img_12.png)  
+
+### setAccessible  
+- Method和Field、Constructor对象都有setAccessible()方法。  
+- setAccessible作用是启动和禁用安全检查的开关。  
+- 参数值为true则指示反射的对象在使用时应该取消Java语言访问检查。
+  - 提高反射的效率，如果代码中必须用反射，而该句代码需要频繁的被调用，那么请设置为true
+  - 使得原本无法范文的私有成员也可以访问
+- 参数值为false则指示反射的对象应该实施Java语言访问检查
