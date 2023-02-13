@@ -5551,4 +5551,147 @@ Field、Method、Constructor、Superclass、Interface、Annotation
 - ParameterizedType:表示一种参数化类型，比如Collection<String>  
 - GenericArrayType:表示一种元素类型是参数化类型或者类型变量的数组类型
 - TypeVariable:是各种类型变量的公共父接口  
-- WildcardType:代表一种通配类型表达式
+- WildcardType:代表一种通配类型表达式  
+
+### 获取注解信息  
+- getAnnotations
+- getAnnotation
+
+#### 练习：ORM  
+- 了解什么是ORM
+  - Object relationship Mapping--->对象关系映射
+  - 类和表结构对应
+  - 属性和字段对应
+  - 对象和记录对应
+![img_13.png](img_13.png)
+- 要求：利用注解和反射完成类和表结构的映射关系
+
+```java
+package com.zj970.reflection;
+
+import java.lang.annotation.*;
+import java.lang.reflect.Field;
+
+/**
+ * <p>
+ * 练习ORM
+ * </p>
+ *
+ * @author: zj970
+ * @date: 2023/2/13
+ */
+public class Test12 {
+    public static void main(String[] args) throws ClassNotFoundException, NoSuchFieldException {
+        Class c = Class.forName("com.zj970.reflection.Student_2");
+        
+        //通过反射获得注解
+        Annotation[] annotations = c.getAnnotations();
+        for (Annotation annotation : annotations) {
+            System.out.println("annotation = " + annotation);
+        }
+
+        //获得注解的value的值
+        System.out.println("===============================");
+        MyTable table = (MyTable) c.getAnnotation(MyTable.class);
+        String value = table.value();
+        System.out.println("value = " + value);
+
+        //获得类指定的注解
+        System.out.println("===============================");
+        Field f = c.getDeclaredField("name");
+        MyField myField = f.getAnnotation(MyField.class);
+        System.out.println("myField.toString() = " + myField.toString());
+    }
+
+}
+
+/**
+ * entity-----student
+ */
+@MyTable("student_table")
+class Student_2 {
+    @MyField(columnName = "student_id", type = "int", length = 10)
+    private int id;
+    @MyField(columnName = "student_age", type = "int", length = 10)
+
+    private int age;
+    @MyField(columnName = "student_name", type = "varchar", length = 10)
+
+    private String name;
+
+    @Override
+    public String toString() {
+        return "Student_2{" +
+                "id=" + id +
+                ", age=" + age +
+                ", name='" + name + '\'' +
+                '}';
+    }
+
+    Student_2() {
+
+    }
+
+    Student_2(int id, int age, String name) {
+        this.id = id;
+        this.age = age;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyTable {
+    String value();
+}
+
+
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+@interface MyField {
+    /**
+     * 字段名
+     *
+     * @return
+     */
+    String columnName();
+
+    /**
+     * 字段类型
+     *
+     * @return
+     */
+    String type();
+
+    /**
+     * 字段长度
+     *
+     * @return
+     */
+    int length();
+}
+```
