@@ -50,8 +50,6 @@ _
 _
 /annotation/src/com/zj970/reflection/Test08.java,c/7/c7df97cdc78c0919cd2e0c0a810a1a9560cea624
 _
-/annotation/src/com/zj970/reflection/Test07.java,6/4/64ae239bbf0fe796653632437ae3168b5a50d00b
-_
 /annotation/src/com/zj970/reflection/Test06.java,3/0/309695857be9d6d3a5c1b1e1e37c87a41ca21f36
 _
 /annotation/src/com/zj970/reflection/Test05.java,1/7/17f60e6789cbd003616b96ab4a13b5883bfc9561
@@ -73,3 +71,9 @@ _
 /annotation/src/com/zj970/reflection/Test10.java,d/d/dd612267b81e323130f557fe322692d6d6f17021
 _
 /annotation/src/com/zj970/reflection/Test11.java,9/8/9885610a07e8476cf75b0ddf555d8bd4ef9e7d86
+_
+/annotation/src/com/zj970/reflection/Test12.java,1/4/14428f553847b9ae8a905e61da605c046b26850f
+=
+java学习.md,b/9/b99f753f32951e90449d5c720fff45d9783ae0ce
+_
+/annotation/src/com/zj970/reflection/Test07.java,6/4/64ae239bbf0fe796653632437ae3168b5a50d00b
