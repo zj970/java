@@ -3998,7 +3998,7 @@ new Thread(station,"小红“),start();
 6. 终于，乌龟赢得了比赛
 
 ```java
-package com.zj.demo;
+package com.zj.demo01;
 
 /**
  * <p><strong>模拟龟兔赛跑</strong></p>
