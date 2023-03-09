@@ -68,8 +68,70 @@
   - 鉴别
 
 ## Native
+
+编写一个多线程启动
+```
+public static void main(String[] args){
+  new Thread(()->{
+      }
+  ,"zj970").start();
+}
+
+```
+
+点进去查看start方法的源码
+
+```
+    public synchronized void start() {
+        /**
+         * This method is not invoked for the main method thread or "system"
+         * group threads created/set up by the VM. Any new functionality added
+         * to this method in the future may have to also be added to the VM.
+         *
+         * A zero status value corresponds to state "NEW".
+         */
+        if (threadStatus != 0)
+            throw new IllegalThreadStateException();
+
+        /* Notify the group that this thread is about to be started
+         * so that it can be added to the group's list of threads
+         * and the group's unstarted count can be decremented. */
+        group.add(this);
+
+        boolean started = false;
+        try {
+            start0();
+            started = true;
+        } finally {
+            try {
+                if (!started) {
+                    group.threadStartFailed(this);
+                }
+            } catch (Throwable ignore) {
+                /* do nothing. If start0 threw a Throwable then
+                  it will be passed up the call stack */
+            }
+        }
+    }
+
+```
+- Native Method Stack
+
+&emsp;&emsp;它的具体做法是Native Method Stack 中登记native方法，在（Execution Engine）执行引擎的时候加载Native Libraies。
+
 ## PC寄存器
+
+- 程序计数器：Program Counter Register
+
+&emsp;&emsp; 每个线程都有一个程序计数器，是线程私有的，就是一个指针，指向方法中的方法字节码（用来存储指向一条指令的地址，也即将要执行的指令代码），在执行引擎读取下一条制定，是一个非常小的内存空间，几乎可以忽略不计。
+
 ## 方法区
+
+- Method Area 方法区
+
+&emsp;&emsp;方法区被所有线程共享，所有字段和方法字节码，以及一些特殊方法，如构造函数，接口代码也在此定义，简单来说，所有定义的方法的信息都保存在该区域，<strong>此区域属于共享空间</strong>  
+&emsp;&emsp;<font color=yellow>静态变量、常量、类信息（构造方法、接口定义）、运行时的常量池也存在方法区中，但是实例变量存在堆内存中，和方法区无关</font>
+
 ## 栈
 ## 三种JVM
 ## 堆
