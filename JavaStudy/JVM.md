@@ -133,6 +133,23 @@ public static void main(String[] args){
 &emsp;&emsp;<font color=yellow>静态变量、常量、类信息（构造方法、接口定义）、运行时的常量池也存在方法区中，但是实例变量存在堆内存中，和方法区无关</font>
 
 ## 栈
+
+- 栈  <font color=blue>先进后出</font>，这就是为什么main方法先执行，最后结束
+- 队列 <font color=blue>先进先出</font>
+
+- 栈
+1. 栈内存，主管程序的运行，生命周期和线程同步;在Android 中有任务栈活动栈的概念
+2. 线程结束，栈内存就是释放，对于栈来说，不存在垃圾回收问题
+3. 栈：8大基本类型+对象引用+实例的方法
+4. 栈运行的原理：<strong>栈帧</strong>
+
+产生StackOverError:
+
+![img_21.png](img_21.png) 
+
+栈+堆+方法区：交互关系  
+![img_22.png](img_22.png)
+
 ## 三种JVM
 ## 堆
 ## 新生区、老年区
