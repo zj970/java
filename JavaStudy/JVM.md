@@ -151,7 +151,24 @@ public static void main(String[] args){
 ![img_22.png](img_22.png)
 
 ## 三种JVM
+
+- Sun 公司 HotSpot Java HotSpot(TM) 64-Bit Server Vm 
+- BEA JRockit
+- IBM J9 VM
+
 ## 堆
+
+&emsp;&emsp;一个Heap，一个JVM 只有一个堆内存，堆内存的大小是可以调节的。类加载器读取了类文件之后，一般会把什么东西放到堆中？类，方法。常量，变量
+
+&emsp;&emsp;堆内存中还要细分三个区域：  
+- 新生区（伊甸园区）：Young/New
+- 养老区 Old
+- 永久区
+
+![img_23.png](img_23.png)  
+&emsp;&emsp;GC垃圾回收，主要是在伊甸园区和养老区，假设内存满了，OOM，堆内存不够！java.lang.OUtOfMemoryError:java heap space  
+&emsp;&emsp;在JDK1.8之后，永久存储区改了个名字（元空间）
+
 ## 新生区、老年区
 ## 永久区
 ## 堆内存调优
