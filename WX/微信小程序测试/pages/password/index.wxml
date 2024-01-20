@@ -1,6 +1,0 @@
-<!--pages/password/index.wxml-->
-
-<view class="container">
-  <input bindinput="getValue" password  placeholder="请输入新密码"></input>
-  <button bindtap="subFun" style="width:100%" type="primary">修改密码</button>
-</view>

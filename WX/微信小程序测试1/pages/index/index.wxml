@@ -1,4 +1,0 @@
-<!--index.wxml-->
-<view class="container">
-  <web-view src="http://117.174.25.188:3000/"></web-view>
-</view>
